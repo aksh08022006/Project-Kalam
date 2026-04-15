@@ -1,0 +1,192 @@
+{
+  "contradictions": [
+    {
+      "schemes": ["pm_kisan", "mgnrega"],
+      "issue": "Employment eligibility unclear for dual participation",
+      "description": "MGNREGA counts all rural adults 18+, but PM Kisan excludes 'government employees'. MGNREGA guidelines say to exclude 'govt servants' but state enforcement varies. Overlap at rural casual/contractual govt workers is undefined — can they claim both simultaneously?",
+      "impact": "high",
+      "resolution_note": "No official clarification; varies by state. MGNREGA state offices should be consulted."
+    },
+    {
+      "schemes": ["pmay_gramin", "pmay_urban"],
+      "issue": "Rural vs urban classification conflict",
+      "description": "Census 2011 defines boundaries, but rapid urbanization has created boundary ambiguities. Peri-urban areas fall into gray zone — same hamlet may be classified rural by one definition, urban by another.",
+      "impact": "medium",
+      "resolution_note": "Consult local municipality for official classification. Reclassification happens every census."
+    }
+  ],
+  "overlaps": [
+    {
+      "schemes": ["pm_ujjwala", "pm_jan_dhan"],
+      "issue": "Both target economically disadvantaged; BPL card holders eligible for both",
+      "description": "A BPL household can theoretically claim Ujjwala (LPG) AND Jan Dhan (bank account). If Ujjwala is claimed first, Jan Dhan becomes easier. If Jan Dhan first, opens door to many schemes. Application order matters.",
+      "recommendation": "Prioritize Jan Dhan first — it unlocks access to 6+ other schemes (PM Kisan, PM Suraksha Bima, etc.)",
+      "impact": "medium"
+    },
+    {
+      "schemes": ["pmjay", "mgnrega"],
+      "issue": "Health + Employment guarantee for rural BPL population",
+      "description": "Both target rural poor. A beneficiary can enroll in both: Ayushman Bharat for ₹5L health insurance, MGNREGA for 100 days work/year. No conflict, but enrollment/verification processes are separate.",
+      "recommendation": "Enroll in both; they are complementary.",
+      "impact": "low"
+    },
+    {
+      "schemes": ["stand_up_india", "pm_kisan"],
+      "issue": "SC/ST farmers: business loan vs income support",
+      "description": "SC/ST farmer can get PM Kisan (₹6k/year income) + Stand-Up India (₹10L business loan). Objectives differ (income support vs capital), so both are available. But loan eligibility may require no competing income.",
+      "recommendation": "Clarify with bank: does PM Kisan receipt affect Stand-Up India loan decision?",
+      "impact": "low"
+    },
+    {
+      "schemes": ["pm_matru_vandana", "pm_poshan"],
+      "issue": "Pregnancy support + child nutrition overlap at first child stage",
+      "description": "PM Matru Vandana covers pregnant women (₹5k per trimester). PM Poshan covers children 6-14. For first-time pregnant mothers, both apply at different life stages — no real overlap. But SECC data may use household-level criteria that could exclude one scheme if applied simultaneously.",
+      "recommendation": "No conflict; both should be available to same household.",
+      "impact": "low"
+    }
+  ],
+  "ambiguous_terms": [
+    {
+      "term": "Small and marginal farmer",
+      "used_in": ["pm_kisan"],
+      "definition_official": "Land holding ≤ 2 hectares (≈5 acres)",
+      "implementation_variance": "Varies by state revenue department. Some states use different thresholds.",
+      "severity": "high",
+      "recommendation": "Consult Patwari (village revenue officer) for your block's definition."
+    },
+    {
+      "term": "Economically weaker section (EWS)",
+      "used_in": ["pmay_urban", "pmjay"],
+      "definition_official": "Annual family income ≤ ₹3L (urban); varies by state for rural",
+      "implementation_variance": "Central govt sets ₹3L cap, but states can raise it. No standardized verification.",
+      "severity": "high",
+      "recommendation": "Check your state's latest EWS notification. Thresholds change annually."
+    },
+    {
+      "term": "Land holding / Cultivable land",
+      "used_in": ["pm_kisan", "pmay_gramin"],
+      "definition_official": "Registered in revenue records (Khasra/Khatauni). Leased, mortgaged, or disputed land status unclear.",
+      "implementation_variance": "State revenue departments interpret differently. Leased land from relatives may or may not count.",
+      "severity": "high",
+      "recommendation": "Obtain written confirmation from Patwari that your land qualifies."
+    },
+    {
+      "term": "First live birth",
+      "used_in": ["pm_matru_vandana"],
+      "definition_official": "First child born alive in current marriage",
+      "implementation_variance": "Unclear if remarriage resets counter. Prior children from previous marriage excluded?",
+      "severity": "medium",
+      "recommendation": "Contact AWHO (Auxiliary Nurse Midwife) for state-specific guidance. Varies by state policy."
+    },
+    {
+      "term": "Rural area (per Census 2011)",
+      "used_in": ["mgnrega", "pmay_gramin", "pm_ujjwala"],
+      "definition_official": "Census 2011 classification: habitation < 5k population, population density < 400/km², <75% employed in non-agricultural sectors",
+      "implementation_variance": "13+ years outdated. Urban sprawl has shifted many villages to de-facto urban. Census 2021 data not yet implemented.",
+      "severity": "high",
+      "recommendation": "Verify with District Collector's office. Get written confirmation of rural/urban status."
+    },
+    {
+      "term": "Family / Household",
+      "used_in": ["pm_kisan", "pmjay", "stand_up_india"],
+      "definition_official": "Varies: sometimes nuclear family, sometimes joint family, sometimes all members under one roof",
+      "implementation_variance": "State policies differ. Income aggregation rules vary (sum all members vs applicant only?).",
+      "severity": "high",
+      "recommendation": "Clarify with local welfare office for your state's definition."
+    },
+    {
+      "term": "Govt employee",
+      "used_in": ["pm_kisan", "mgnrega"],
+      "definition_official": "Regular govt service employee",
+      "implementation_variance": "Unclear if contract/casual/temporary employees count. Different interpretation across states.",
+      "severity": "medium",
+      "recommendation": "Check if you're on regular rolls. Casual employees should clarify with employer."
+    },
+    {
+      "term": "Pre-COVID street vending certificate",
+      "used_in": ["svaniidhi"],
+      "definition_official": "Certificate of vending status issued before March 2020",
+      "implementation_variance": "Many street vendors never had official certificate. Vending list maintenance varies by ULB.",
+      "severity": "high",
+      "recommendation": "Apply to ULB for retrospective certificate or historical vending record. Some states accept sworn affidavit + community certification."
+    }
+  ],
+  "state_level_variations": [
+    {
+      "scheme": "pm_kisan",
+      "variation": "Caste-based supplementary payments",
+      "example": "Some states add ₹2-4k extra for SC/ST farmers",
+      "impact": "Eligible farmers get higher benefit in some states"
+    },
+    {
+      "scheme": "mgnrega",
+      "variation": "Wage rate and job type availability",
+      "example": "Wage ranges ₹255–290/day by state. Rural employment availability varies.",
+      "impact": "Actual job guarantee quality varies significantly"
+    },
+    {
+      "scheme": "pmay",
+      "variation": "Cost ceiling for house construction",
+      "example": "Urban: ₹4.5–12L depending on city tier. Rural: ₹1.2L fixed but varies.",
+      "impact": "Loan amount and eligibility varies by location"
+    },
+    {
+      "scheme": "pm_ujjwala",
+      "variation": "BPL list maintenance quality",
+      "example": "Some states have outdated lists; many eligible people not captured.",
+      "impact": "Effective reach varies; some states have >90% coverage, others <50%"
+    }
+  ],
+  "data_quality_issues": [
+    {
+      "issue": "SECC 2011 data staleness",
+      "affected_schemes": ["pmjay"],
+      "severity": "critical",
+      "description": "SECC 2011 database is 13+ years old. Many people have since crossed income thresholds (both ways). New eligible people not in database. States use supplementary lists but inconsistently.",
+      "workaround": "Request inclusion in supplementary APL list if income-qualified."
+    },
+    {
+      "issue": "BPL card inconsistency",
+      "affected_schemes": ["pmay", "pm_ujjwala", "pmjay"],
+      "severity": "high",
+      "description": "BPL card issuance suspended (2015), but old cards still used for scheme eligibility. Different states use different income cutoffs for legacy cards.",
+      "workaround": "Get income certificate from revenue office as backup proof."
+    },
+    {
+      "issue": "Census 2011 boundaries outdated",
+      "affected_schemes": ["mgnrega", "pmay_gramin", "pm_ujjwala"],
+      "severity": "high",
+      "description": "Rural/urban classification based on 13-year-old census. Rapid urbanization means de-facto urban areas classified rural (and vice versa).",
+      "workaround": "Get official rural/urban status certificate from Collector's office."
+    },
+    {
+      "issue": "No unified family identifier",
+      "affected_schemes": ["pm_kisan", "pmjay", "stand_up_india"],
+      "severity": "medium",
+      "description": "Schemes use different family definitions and Aadhaar linking. No deduplication — same person could theoretically apply under different family units.",
+      "workaround": "Link all family members' Aadhaar to same household unit."
+    }
+  ],
+  "recommendation_summary": [
+    {
+      "for_user": "Always verify direct with local authority",
+      "why": "Scheme rules have ambiguities; state/district implementation varies. Central govt rules are often reinterpreted locally.",
+      "action": "Contact your Tehsildar, Panchayat, or ULB with your specific situation."
+    },
+    {
+      "for_user": "Apply for multiple schemes",
+      "why": "Most schemes are non-conflicting. Getting Jan Dhan unlocks access to 6 others.",
+      "action": "Prioritize: Jan Dhan → Aadhaar → Bank account. Then apply for main schemes."
+    },
+    {
+      "for_user": "Get written confirmation for ambiguous criteria",
+      "why": "Verbal assurances don't count. State/district policies vary.",
+      "action": "Obtain written letter from Patwari/Tehsildar confirming your eligibility for that specific criterion."
+    },
+    {
+      "for_user": "Document collection is time-critical",
+      "why": "Some certificates take 30-60 days. Start early.",
+      "action": "Follow the document checklist priority order. Parallel track where possible."
+    }
+  ]
+}

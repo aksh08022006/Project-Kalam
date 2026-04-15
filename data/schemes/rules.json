@@ -1,0 +1,715 @@
+[
+  {
+    "scheme_id": "pm_kisan",
+    "scheme_name": "PM Kisan Samman Nidhi",
+    "description": "Direct income support to all farmers holding cultivable land",
+    "rules": [
+      {
+        "field": "occupation",
+        "operator": "==",
+        "value": "farmer",
+        "rule_type": "hard",
+        "description": "Must be engaged in farming"
+      },
+      {
+        "field": "land_owned_acres",
+        "operator": ">",
+        "value": 0,
+        "rule_type": "hard",
+        "description": "Must hold at least some cultivable land"
+      },
+      {
+        "field": "has_bank_account",
+        "operator": "==",
+        "value": true,
+        "rule_type": "hard",
+        "description": "Must have an active bank account for DBT"
+      },
+      {
+        "field": "has_aadhaar",
+        "operator": "==",
+        "value": true,
+        "rule_type": "hard",
+        "description": "Aadhaar number required for authentication"
+      },
+      {
+        "field": "annual_income",
+        "operator": "<",
+        "value": 200000,
+        "rule_type": "soft",
+        "description": "Target is small and marginal farmers; landless agricultural workers excluded"
+      }
+    ],
+    "ambiguity_flags": [
+      {
+        "issue": "Land ownership definition",
+        "description": "Guidelines say 'land holding farmers' but ambiguous whether leased/mortgaged land counts. State revenue records vary.",
+        "severity": "high"
+      },
+      {
+        "issue": "Exclusion criteria vague",
+        "description": "Scheme excludes 'high-income farmers' and 'govt employees' but threshold and definitions vary by state",
+        "severity": "medium"
+      },
+      {
+        "issue": "Family-based exclusions",
+        "description": "Some guidelines mention family income limits but definition of 'family' (joint vs nuclear) unclear",
+        "severity": "medium"
+      }
+    ],
+    "prerequisite_schemes": [],
+    "documents_required": [
+      "Aadhaar Card",
+      "Bank Account Details",
+      "Land Records (Khasra/Khatauni)",
+      "Photo ID"
+    ],
+    "benefit_amount": "₹6,000/year (₹2,000 every 4 months)",
+    "frequency": "Quarterly",
+    "last_updated": "2024-12",
+    "official_source": "pmkisan.gov.in"
+  },
+  {
+    "scheme_id": "mgnrega",
+    "scheme_name": "Mahatma Gandhi National Rural Employment Guarantee Act (MGNREGA)",
+    "description": "Demand-based rural employment guarantee; 100 days work per financial year",
+    "rules": [
+      {
+        "field": "in_rural_area",
+        "operator": "==",
+        "value": true,
+        "rule_type": "hard",
+        "description": "Must reside in rural area (as per Census 2011)"
+      },
+      {
+        "field": "age",
+        "operator": ">=",
+        "value": 18,
+        "rule_type": "hard",
+        "description": "Must be at least 18 years old"
+      },
+      {
+        "field": "is_indian_citizen",
+        "operator": "==",
+        "value": true,
+        "rule_type": "hard",
+        "description": "Must be Indian citizen or documented long-term resident"
+      }
+    ],
+    "ambiguity_flags": [
+      {
+        "issue": "Rural area definition",
+        "description": "Census 2011 definition used, but urban sprawl makes boundaries fuzzy in many states",
+        "severity": "high"
+      },
+      {
+        "issue": "Work demand mechanism",
+        "description": "Demand-based but state capacity varies; actual job availability not guaranteed across all regions",
+        "severity": "high"
+      },
+      {
+        "issue": "Govt employee exclusion",
+        "description": "Guidelines exclude 'govt employees' but definition of casual/contractual workers varies",
+        "severity": "medium"
+      },
+      {
+        "issue": "Concurrent occupation",
+        "description": "Can MGNREGA beneficiary also claim PM Kisan simultaneously? Depends on state policy.",
+        "severity": "medium"
+      }
+    ],
+    "prerequisite_schemes": [],
+    "documents_required": [
+      "Aadhaar Card",
+      "Photo ID",
+      "Proof of Rural Residence"
+    ],
+    "benefit_amount": "₹255–290/day (varies by state)",
+    "frequency": "100 days guaranteed per year",
+    "last_updated": "2024-11",
+    "official_source": "nrega.nic.in"
+  },
+  {
+    "scheme_id": "pmjay",
+    "scheme_name": "Ayushman Bharat - PM-JAY (Pradhan Mantri Jan Arogya Yojana)",
+    "description": "Health insurance for vulnerable families; ₹5 lakh annual coverage",
+    "rules": [
+      {
+        "field": "secc_2011_rating",
+        "operator": "in",
+        "value": ["d1", "d2"],
+        "rule_type": "hard",
+        "description": "Must be in SECC 2011 deprived categories (D1=Agricultural, D2=Non-agricultural landless)"
+      },
+      {
+        "field": "bpl_card",
+        "operator": "==",
+        "value": true,
+        "rule_type": "soft",
+        "description": "BPL status strongly indicates eligibility (alternate pathway to SECC check)"
+      },
+      {
+        "field": "annual_income",
+        "operator": "<=",
+        "value": 125000,
+        "rule_type": "soft",
+        "description": "Income ceiling for APL (Above Poverty Line) families in rural areas"
+      }
+    ],
+    "ambiguity_flags": [
+      {
+        "issue": "SECC 2011 data quality",
+        "description": "SECC 2011 is now 13+ years old; many eligible people not in database. States use different supplementary lists.",
+        "severity": "high"
+      },
+      {
+        "issue": "BPL vs SECC conflict",
+        "description": "BPL card holders may not be in SECC database and vice versa. Reconciliation rules differ by state.",
+        "severity": "high"
+      },
+      {
+        "issue": "Income thresholds vary",
+        "description": "Urban and rural income limits differ; state-level modifications not consistently applied",
+        "severity": "medium"
+      },
+      {
+        "issue": "Family member eligibility",
+        "description": "Definition of 'family' (nuclear vs joint vs household) for income calculation unclear",
+        "severity": "medium"
+      }
+    ],
+    "prerequisite_schemes": [],
+    "documents_required": [
+      "SECC Card / APL/BPL Card",
+      "Aadhaar Card",
+      "Beneficiary Card (once enrolled)",
+      "Photo ID"
+    ],
+    "benefit_amount": "₹5,00,000 annual health coverage per family",
+    "frequency": "Valid for 1 year from enrollment",
+    "last_updated": "2024-10",
+    "official_source": "pmjay.gov.in"
+  },
+  {
+    "scheme_id": "pmay_gramin",
+    "scheme_name": "Pradhan Mantri Awas Yojana - Gramin (PMAY-G)",
+    "description": "Provides assistance for construction of pucca houses in rural areas",
+    "rules": [
+      {
+        "field": "in_rural_area",
+        "operator": "==",
+        "value": true,
+        "rule_type": "hard",
+        "description": "Must be in rural area as per Census 2011"
+      },
+      {
+        "field": "owns_house",
+        "operator": "==",
+        "value": false,
+        "rule_type": "hard",
+        "description": "Applicant must not own a pucca house"
+      },
+      {
+        "field": "bpl_card",
+        "operator": "==",
+        "value": true,
+        "rule_type": "soft",
+        "description": "BPL status strongly preferred; APL families also eligible based on state norms"
+      },
+      {
+        "field": "annual_income",
+        "operator": "<=",
+        "value": 175000,
+        "rule_type": "soft",
+        "description": "Income ceiling for rural areas (varies by state)"
+      }
+    ],
+    "ambiguity_flags": [
+      {
+        "issue": "Pucca vs semi-pucca house definition",
+        "description": "Guidelines unclear on what constitutes 'pucca' — cement vs concrete vs brick standards vary by state",
+        "severity": "medium"
+      },
+      {
+        "issue": "Income ceiling variations",
+        "description": "Central guideline ₹1.75L but states modify; check state notification",
+        "severity": "medium"
+      }
+    ],
+    "prerequisite_schemes": [],
+    "documents_required": ["Aadhaar Card", "Land/House ownership proof", "Income certificate", "BPL/APL card"],
+    "benefit_amount": "₹1,20,000 for construction assistance",
+    "frequency": "One-time",
+    "last_updated": "2024-11",
+    "official_source": "pmaymis.gov.in"
+  },
+  {
+    "scheme_id": "pmay_urban",
+    "scheme_name": "Pradhan Mantri Awas Yojana - Urban (PMAY-U)",
+    "description": "Assists urban poor in accessing housing credit-linked subsidy",
+    "rules": [
+      {
+        "field": "in_urban_area",
+        "operator": "==",
+        "value": true,
+        "rule_type": "hard",
+        "description": "Must be in urban area (City/town as per Census 2011)"
+      },
+      {
+        "field": "owns_house",
+        "operator": "==",
+        "value": false,
+        "rule_type": "hard",
+        "description": "Applicant and family members must not own any pucca house"
+      },
+      {
+        "field": "annual_income",
+        "operator": "in",
+        "value": ["eWS", "LIG", "MIG"],
+        "rule_type": "hard",
+        "description": "Must fall in EWS/LIG/MIG income slab"
+      }
+    ],
+    "ambiguity_flags": [
+      {
+        "issue": "Income slabs vary by city tier",
+        "description": "EWS/LIG/MIG income limits differ by metro vs tier-2 vs tier-3 cities",
+        "severity": "high"
+      },
+      {
+        "issue": "Credit-linked subsidy complexity",
+        "description": "Interest subsidy depends on loan amount and repayment period; calculations vary",
+        "severity": "medium"
+      }
+    ],
+    "prerequisite_schemes": [],
+    "documents_required": ["Aadhaar", "Income proof", "Property documents", "Loan sanction letter"],
+    "benefit_amount": "₹2.67-4.5L subsidy (depends on income slab and loan)",
+    "frequency": "One-time credit subsidy",
+    "last_updated": "2024-10",
+    "official_source": "pmaymis.gov.in"
+  },
+  {
+    "scheme_id": "pm_ujjwala",
+    "scheme_name": "Pradhan Mantri Ujjwala Yojana (PMUY)",
+    "description": "Free LPG connection for BPL and Below Poverty Line households",
+    "rules": [
+      {
+        "field": "bpl_card",
+        "operator": "==",
+        "value": true,
+        "rule_type": "hard",
+        "description": "Must have BPL card or be eligible under BPL criteria"
+      },
+      {
+        "field": "has_aadhaar",
+        "operator": "==",
+        "value": true,
+        "rule_type": "hard",
+        "description": "Aadhaar required for authentication and DBT of subsidy"
+      },
+      {
+        "field": "lpg_connection",
+        "operator": "==",
+        "value": false,
+        "rule_type": "hard",
+        "description": "Applicant must not have existing LPG connection"
+      }
+    ],
+    "ambiguity_flags": [
+      {
+        "issue": "BPL list outdated and inconsistent",
+        "description": "Central BPL card issue stopped in 2015; many states use supplementary lists",
+        "severity": "high"
+      },
+      {
+        "issue": "Household vs individual eligibility",
+        "description": "Unclear if both spouses can apply or only one connection per household",
+        "severity": "medium"
+      }
+    ],
+    "prerequisite_schemes": [],
+    "documents_required": ["BPL card", "Aadhaar", "Bank passbook", "Photo ID"],
+    "benefit_amount": "Free LPG connection + ₹1600 deposit subsidy",
+    "frequency": "One-time",
+    "last_updated": "2024-09",
+    "official_source": "pmuy.gov.in"
+  },
+  {
+    "scheme_id": "pm_jan_dhan",
+    "scheme_name": "Pradhan Mantri Jan Dhan Yojana (PMJDY)",
+    "description": "Universal banking scheme to provide bank account access to all citizens",
+    "rules": [
+      {
+        "field": "is_indian_citizen",
+        "operator": "==",
+        "value": true,
+        "rule_type": "hard",
+        "description": "Must be Indian citizen"
+      },
+      {
+        "field": "has_bank_account",
+        "operator": "==",
+        "value": false,
+        "rule_type": "hard",
+        "description": "Applicant must not have an existing bank account in any bank"
+      }
+    ],
+    "ambiguity_flags": [
+      {
+        "issue": "Definition of 'no bank account'",
+        "description": "Unclear if inactive accounts or joint accounts count; varies by bank implementation",
+        "severity": "medium"
+      }
+    ],
+    "prerequisite_schemes": [],
+    "documents_required": ["Photo ID", "Address proof", "Aadhaar (optional but recommended)"],
+    "benefit_amount": "Bank account with ₹1,00,000 OD limit + life insurance",
+    "frequency": "One-time account opening",
+    "last_updated": "2024-11",
+    "official_source": "pmjdy.gov.in"
+  },
+  {
+    "scheme_id": "pm_suraksha_bima",
+    "scheme_name": "Pradhan Mantri Suraksha Bima Yojana (PMSBY)",
+    "description": "Life insurance scheme for low-income families; ₹2L accidental death coverage",
+    "rules": [
+      {
+        "field": "age",
+        "operator": ">=",
+        "value": 18,
+        "rule_type": "hard",
+        "description": "Minimum age 18 years"
+      },
+      {
+        "field": "age",
+        "operator": "<=",
+        "value": 70,
+        "rule_type": "hard",
+        "description": "Maximum age 70 years"
+      },
+      {
+        "field": "has_bank_account",
+        "operator": "==",
+        "value": true,
+        "rule_type": "hard",
+        "description": "Must have savings/current account for premium auto-debit"
+      }
+    ],
+    "ambiguity_flags": [
+      {
+        "issue": "Premium debit timing",
+        "description": "Auto-debit on 1st of month; if account balance insufficient, eligibility lapses automatically",
+        "severity": "medium"
+      }
+    ],
+    "prerequisite_schemes": ["pm_jan_dhan"],
+    "documents_required": ["Aadhaar", "Bank account details", "Photo ID"],
+    "benefit_amount": "₹2,00,000 accidental death coverage for ₹12/year premium",
+    "frequency": "Annual renewal (auto-debit)",
+    "last_updated": "2024-10",
+    "official_source": "pmsby.gov.in"
+  },
+  {
+    "scheme_id": "pm_jeevan_jyoti_bima",
+    "scheme_name": "Pradhan Mantri Jeevan Jyoti Bima Yojana (PMJJBY)",
+    "description": "Life insurance scheme covering death from any cause",
+    "rules": [
+      {
+        "field": "age",
+        "operator": ">=",
+        "value": 18,
+        "rule_type": "hard",
+        "description": "Minimum age 18 years"
+      },
+      {
+        "field": "age",
+        "operator": "<=",
+        "value": 50,
+        "rule_type": "hard",
+        "description": "Maximum age 50 years (different from Suraksha Bima)"
+      },
+      {
+        "field": "has_bank_account",
+        "operator": "==",
+        "value": true,
+        "rule_type": "hard",
+        "description": "Must have savings account for auto-debit"
+      }
+    ],
+    "ambiguity_flags": [
+      {
+        "issue": "Overlap with Suraksha Bima",
+        "description": "Both schemes target low-income; unclear if beneficiary can hold both simultaneously",
+        "severity": "medium"
+      }
+    ],
+    "prerequisite_schemes": ["pm_jan_dhan"],
+    "documents_required": ["Aadhaar", "Bank account", "Photo ID"],
+    "benefit_amount": "₹5,00,000 life insurance for ₹436/year premium",
+    "frequency": "Annual renewal (auto-debit)",
+    "last_updated": "2024-10",
+    "official_source": "pmjjby.gov.in"
+  },
+  {
+    "scheme_id": "apy",
+    "scheme_name": "Atal Pension Yojana (APY)",
+    "description": "Pension scheme for unorganized sector workers; guaranteed minimum pension from age 60",
+    "rules": [
+      {
+        "field": "age",
+        "operator": ">=",
+        "value": 18,
+        "rule_type": "hard",
+        "description": "Entry age minimum 18 years"
+      },
+      {
+        "field": "age",
+        "operator": "<=",
+        "value": 40,
+        "rule_type": "hard",
+        "description": "Entry age maximum 40 years (20-year contribution period to age 60)"
+      },
+      {
+        "field": "has_bank_account",
+        "operator": "==",
+        "value": true,
+        "rule_type": "hard",
+        "description": "Must have savings account for contribution auto-debit"
+      }
+    ],
+    "ambiguity_flags": [
+      {
+        "issue": "Contribution adequacy unclear",
+        "description": "Pension varies by contribution amount; minimum guaranteed but complex calculation",
+        "severity": "low"
+      }
+    ],
+    "prerequisite_schemes": ["pm_jan_dhan"],
+    "documents_required": ["Aadhaar", "Bank account", "Photo ID"],
+    "benefit_amount": "Minimum ₹1000-5000/month pension from age 60 (depends on contribution)",
+    "frequency": "Monthly (post age 60)",
+    "last_updated": "2024-11",
+    "official_source": "atalpensionyojana.gov.in"
+  },
+  {
+    "scheme_id": "nsp",
+    "scheme_name": "National Scholarship Scheme (NSP)",
+    "description": "Provides scholarships to meritorious students from economically weaker sections",
+    "rules": [
+      {
+        "field": "is_student",
+        "operator": "==",
+        "value": true,
+        "rule_type": "hard",
+        "description": "Must be enrolled in government or private school/college"
+      },
+      {
+        "field": "annual_income",
+        "operator": "<=",
+        "value": 250000,
+        "rule_type": "hard",
+        "description": "Family annual income ≤ ₹2.5 lakh"
+      },
+      {
+        "field": "age",
+        "operator": ">=",
+        "value": 18,
+        "rule_type": "soft",
+        "description": "Post-matric scholarships for age 18+"
+      }
+    ],
+    "ambiguity_flags": [
+      {
+        "issue": "Merit vs EWS criteria",
+        "description": "Scholarship eligibility depends on both academic merit and EWS status; scoring mechanism unclear",
+        "severity": "medium"
+      }
+    ],
+    "prerequisite_schemes": [],
+    "documents_required": ["School/college enrollment certificate", "Income certificate", "Photo ID", "Bank account"],
+    "benefit_amount": "₹500-7000/month (varies by category and stage)",
+    "frequency": "Monthly (during academic year)",
+    "last_updated": "2024-09",
+    "official_source": "scholarships.gov.in"
+  },
+  {
+    "scheme_id": "pm_matru_vandana",
+    "scheme_name": "Pradhan Mantri Matru Vandana Yojana (PMMVY)",
+    "description": "Cash assistance for pregnant and lactating women; ₹5000 per trimester",
+    "rules": [
+      {
+        "field": "is_woman",
+        "operator": "==",
+        "value": true,
+        "rule_type": "hard",
+        "description": "Applicant must be woman"
+      },
+      {
+        "field": "is_pregnant",
+        "operator": "==",
+        "value": true,
+        "rule_type": "hard",
+        "description": "Must be pregnant or lactating mother"
+      },
+      {
+        "field": "is_first_child",
+        "operator": "==",
+        "value": true,
+        "rule_type": "hard",
+        "description": "Benefit applicable only for first live birth"
+      }
+    ],
+    "ambiguity_flags": [
+      {
+        "issue": "Definition of 'first live birth'",
+        "description": "Unclear if previous miscarriage/stillbirth resets counter; remarriage status ambiguous",
+        "severity": "high"
+      },
+      {
+        "issue": "Lactating woman without prior pregnancy",
+        "description": "Unclear if adoptive mothers or surrogate mothers qualify",
+        "severity": "medium"
+      }
+    ],
+    "prerequisite_schemes": [],
+    "documents_required": ["Aadhaar", "Medical certificate (pregnancy)", "Bank account", "Photo ID"],
+    "benefit_amount": "₹5000 per trimester (₹1000 at registration, ₹2000 each trimester)",
+    "frequency": "3 payments during pregnancy + lactation",
+    "last_updated": "2024-10",
+    "official_source": "wcd.nic.in"
+  },
+  {
+    "scheme_id": "pm_poshan",
+    "scheme_name": "Pradhan Mantri Poshan Shakti Nirman (PM POSHAN)",
+    "description": "Mid-day meal scheme for school children; free nutritious meal",
+    "rules": [
+      {
+        "field": "is_student",
+        "operator": "==",
+        "value": true,
+        "rule_type": "hard",
+        "description": "Must be enrolled in government or government-aided school"
+      },
+      {
+        "field": "age",
+        "operator": ">=",
+        "value": 6,
+        "rule_type": "hard",
+        "description": "Minimum age 6 years (Class I start)"
+      },
+      {
+        "field": "age",
+        "operator": "<=",
+        "value": 14,
+        "rule_type": "hard",
+        "description": "Maximum age 14 years (up to Class VIII)"
+      }
+    ],
+    "ambiguity_flags": [
+      {
+        "issue": "School enrollment verification",
+        "description": "No central verification; relies on school certificate; definitions of govt/aided vary by state",
+        "severity": "medium"
+      }
+    ],
+    "prerequisite_schemes": [],
+    "documents_required": ["School enrollment certificate", "Age proof"],
+    "benefit_amount": "Free nutritious meal during school days (no direct cash)",
+    "frequency": "Daily (on school days)",
+    "last_updated": "2024-11",
+    "official_source": "samagra.education.gov.in"
+  },
+  {
+    "scheme_id": "stand_up_india",
+    "scheme_name": "Stand-Up India Scheme",
+    "description": "Business loan for SC/ST entrepreneurs or women entrepreneurs; ₹10L-1Cr",
+    "rules": [
+      {
+        "field": "is_woman",
+        "operator": "==",
+        "value": true,
+        "rule_type": "soft",
+        "description": "Women entrepreneurs eligible (fast-track)"
+      },
+      {
+        "field": "caste",
+        "operator": "in",
+        "value": ["SC", "ST"],
+        "rule_type": "soft",
+        "description": "SC/ST entrepreneurs eligible (separate category)"
+      },
+      {
+        "field": "annual_income",
+        "operator": "<=",
+        "value": 2500000,
+        "rule_type": "hard",
+        "description": "Net worth/annual income limit for business applicants"
+      }
+    ],
+    "ambiguity_flags": [
+      {
+        "issue": "Woman AND SC/ST: which gets priority?",
+        "description": "Unclear if woman SC/ST entrepreneur has precedence or if categories are mutually exclusive",
+        "severity": "medium"
+      },
+      {
+        "issue": "Business plan evaluation",
+        "description": "Loan approval depends on viability of business plan; criteria vary by bank",
+        "severity": "medium"
+      }
+    ],
+    "prerequisite_schemes": [],
+    "documents_required": ["Aadhaar", "Caste certificate (if SC/ST)", "Bank account", "Business plan"],
+    "benefit_amount": "Loan ₹10L-1Cr with subsidized interest (4-5%)",
+    "frequency": "One-time loan",
+    "last_updated": "2024-09",
+    "official_source": "standupmitra.in"
+  },
+  {
+    "scheme_id": "svaniidhi",
+    "scheme_name": "PM Street Vendor's AtmaNirbhar Nidhi (PM SVANidhi)",
+    "description": "Working capital loan for street vendors; ₹50,000 unsecured",
+    "rules": [
+      {
+        "field": "occupation",
+        "operator": "==",
+        "value": "street_vendor",
+        "rule_type": "hard",
+        "description": "Must be engaged in street vending"
+      },
+      {
+        "field": "covid_vending_cert",
+        "operator": "==",
+        "value": true,
+        "rule_type": "hard",
+        "description": "Must have pre-COVID vending certificate from Municipal Corporation"
+      },
+      {
+        "field": "has_bank_account",
+        "operator": "==",
+        "value": true,
+        "rule_type": "hard",
+        "description": "Must have bank account for loan disbursement"
+      }
+    ],
+    "ambiguity_flags": [
+      {
+        "issue": "Pre-COVID vending certificate requirement",
+        "description": "Many street vendors never had formal certificates; vending list maintenance varies by ULB",
+        "severity": "high"
+      },
+      {
+        "issue": "Definition of 'street vendor'",
+        "description": "Unclear if e-commerce or online vendors qualify; scheme designed for traditional street traders",
+        "severity": "medium"
+      }
+    ],
+    "prerequisite_schemes": ["pm_jan_dhan"],
+    "documents_required": ["Vending certificate", "Aadhaar", "Bank account", "Photo ID", "Business details"],
+    "benefit_amount": "Unsecured working capital loan ₹50,000 at 7% interest with CGTMSE guarantee",
+    "frequency": "One-time loan",
+    "last_updated": "2024-08",
+    "official_source": "svaniidhi.com"
+  }
+]

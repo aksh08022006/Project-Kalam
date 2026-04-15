@@ -1,0 +1,304 @@
+[
+  {
+    "id": "edge_001",
+    "name": "Widow who recently remarried",
+    "description": "PM Matru Vandana says 'first live birth' — does marital history reset upon remarriage?",
+    "profile": {
+      "age": 32,
+      "state": "Uttar Pradesh",
+      "caste": "GEN",
+      "annual_income": 65000,
+      "occupation": "homemaker",
+      "family_size": 3,
+      "has_bank_account": true,
+      "has_aadhaar": true,
+      "is_woman": true,
+      "is_pregnant": true,
+      "is_first_child": false,
+      "previous_marriage": "widowed",
+      "months_pregnant": 6,
+      "in_rural_area": false
+    },
+    "expected_result": {
+      "schemes": {
+        "pm_matru_vandana": {
+          "status": "AMBIGUOUS",
+          "note": "Is she entitled to PM Matru Vandana for first child of current marriage, or is prior child disqualifying?"
+        }
+      }
+    },
+    "test_focus": "AMBIGUITY — Scheme rules don't clarify how remarriage affects 'first live birth' criterion"
+  },
+  {
+    "id": "edge_002",
+    "name": "Farmer who leases land, not owns",
+    "description": "PM Kisan says 'land holding farmers' but ambiguous whether leased/mortgaged land counts.",
+    "profile": {
+      "age": 45,
+      "state": "Punjab",
+      "caste": "OBC",
+      "annual_income": 120000,
+      "occupation": "farmer",
+      "family_size": 5,
+      "land_owned_acres": 0,
+      "land_leased_acres": 2.5,
+      "has_bank_account": true,
+      "has_aadhaar": true,
+      "is_woman": false,
+      "in_rural_area": true
+    },
+    "expected_result": {
+      "schemes": {
+        "pm_kisan": {
+          "status": "PARTIAL",
+          "note": "Hard rule: land_owned_acres > 0 fails. Leased land status unknown."
+        }
+      }
+    },
+    "test_focus": "HARD FAILURE — Land ownership defined as owned, not leased. Shows why gap analysis matters."
+  },
+  {
+    "id": "edge_003",
+    "name": "Has Aadhaar but no bank account",
+    "description": "PM Kisan, PM Jan Dhan require both. Does one without the other exclude the user?",
+    "profile": {
+      "age": 52,
+      "state": "Bihar",
+      "caste": "SC",
+      "annual_income": 95000,
+      "occupation": "farmer",
+      "family_size": 4,
+      "land_owned_acres": 1.2,
+      "has_bank_account": false,
+      "has_aadhaar": true,
+      "is_woman": false,
+      "in_rural_area": true
+    },
+    "expected_result": {
+      "schemes": {
+        "pm_kisan": {
+          "status": "NO",
+          "note": "Hard failure on bank_account == false"
+        },
+        "pm_jan_dhan": {
+          "status": "FULL",
+          "note": "This scheme opens the bank account!"
+        }
+      }
+    },
+    "test_focus": "PREREQUISITE DEPENDENCY — PM Jan Dhan enables access to other schemes"
+  },
+  {
+    "id": "edge_004",
+    "name": "Street vendor without pre-COVID certificate",
+    "description": "SVANidhi requires pre-COVID street vending certificate. What if lost or never had?",
+    "profile": {
+      "age": 38,
+      "state": "Maharashtra",
+      "caste": "GEN",
+      "annual_income": 45000,
+      "occupation": "street_vendor",
+      "family_size": 3,
+      "has_bank_account": true,
+      "has_aadhaar": true,
+      "is_woman": false,
+      "covid_vending_cert": false,
+      "vending_since_years": 8,
+      "in_urban_area": true
+    },
+    "expected_result": {
+      "schemes": {
+        "svaniidhi": {
+          "status": "NO",
+          "note": "Hard rule: covid_vending_cert == false blocks eligibility"
+        }
+      }
+    },
+    "test_focus": "DOCUMENTATION BARRIER — Certificate requirement creates artificial exclusion despite actual street vending history"
+  },
+  {
+    "id": "edge_005",
+    "name": "17-year-old student",
+    "description": "NSP requires age restrictions; other schemes might cover via education support.",
+    "profile": {
+      "age": 17,
+      "state": "Karnataka",
+      "caste": "OBC",
+      "annual_income": 0,
+      "occupation": "student",
+      "family_size": 4,
+      "family_annual_income": 180000,
+      "has_bank_account": true,
+      "has_aadhaar": true,
+      "is_woman": false,
+      "is_student": true,
+      "school_enrollment": true,
+      "in_rural_area": false
+    },
+    "expected_result": {
+      "schemes": {
+        "nsp": {
+          "status": "NO",
+          "note": "Age < 18 disqualifies from National Scholarship Scheme"
+        },
+        "pm_poshan": {
+          "status": "FULL",
+          "note": "Age 6-14 criterion met if in eligible school"
+        }
+      }
+    },
+    "test_focus": "AGE CUTOFF — Different schemes have overlapping but distinct age boundaries"
+  },
+  {
+    "id": "edge_006",
+    "name": "SC woman running a business",
+    "description": "Stand-Up India targets SC/ST + women. Double eligibility — does one satisfy or do both conditions apply?",
+    "profile": {
+      "age": 31,
+      "state": "Telangana",
+      "caste": "SC",
+      "annual_income": 450000,
+      "occupation": "business",
+      "family_size": 2,
+      "has_bank_account": true,
+      "has_aadhaar": true,
+      "is_woman": true,
+      "business_type": "retail",
+      "business_age_years": 2,
+      "in_urban_area": true
+    },
+    "expected_result": {
+      "schemes": {
+        "stand_up_india": {
+          "status": "FULL",
+          "note": "SC + woman = multiple eligibility pathways (likely 'or' logic, not 'and')"
+        }
+      }
+    },
+    "test_focus": "ELIGIBILITY INTERSECTION — Clarify if multiple criteria are AND or OR logic"
+  },
+  {
+    "id": "edge_007",
+    "name": "Migrant worker registered in Bihar, lives in Maharashtra",
+    "description": "MGNREGA is state-specific. Rural residency definition unclear for migrants.",
+    "profile": {
+      "age": 41,
+      "state_registered": "Bihar",
+      "state_current": "Maharashtra",
+      "caste": "GEN",
+      "annual_income": 78000,
+      "occupation": "labour",
+      "family_size": 4,
+      "has_bank_account": false,
+      "has_aadhaar": true,
+      "is_woman": false,
+      "in_rural_area": true,
+      "migration_status": "internal_migrant",
+      "months_in_current_state": 18
+    },
+    "expected_result": {
+      "schemes": {
+        "mgnrega": {
+          "status": "AMBIGUOUS",
+          "note": "Which state's residency rules apply? MGNREGA enrollment by state, but migrant status unclear."
+        }
+      }
+    },
+    "test_focus": "STATE JURISDICTION — Scheme implementation varies by state; no unified rule for migrants"
+  },
+  {
+    "id": "edge_008",
+    "name": "BPL family with one member in government service",
+    "description": "PM Kisan excludes govt employees. Does one member's govt job exclude entire family?",
+    "profile": {
+      "age": 55,
+      "state": "Madhya Pradesh",
+      "caste": "GEN",
+      "annual_income": 185000,
+      "occupation": "farmer",
+      "family_size": 6,
+      "land_owned_acres": 0.8,
+      "has_bank_account": true,
+      "has_aadhaar": true,
+      "is_woman": false,
+      "bpl_card": true,
+      "family_members": [
+        {"relation": "self", "occupation": "farmer", "in_govt_service": false},
+        {"relation": "spouse", "occupation": "homemaker", "in_govt_service": false},
+        {"relation": "son", "occupation": "govt_employee", "in_govt_service": true}
+      ],
+      "in_rural_area": true
+    },
+    "expected_result": {
+      "schemes": {
+        "pm_kisan": {
+          "status": "AMBIGUOUS",
+          "note": "Is govt employee criterion evaluated at applicant level or family level?"
+        }
+      }
+    },
+    "test_focus": "FAMILY-LEVEL RULES — Unclear if exclusion applies to individual applicant or household"
+  },
+  {
+    "id": "edge_009",
+    "name": "Person with disability, no caste certificate",
+    "description": "Some schemes have disability provisions. Do they overlap with caste-based schemes?",
+    "profile": {
+      "age": 28,
+      "state": "Gujarat",
+      "caste": "GEN",
+      "annual_income": 110000,
+      "occupation": "student",
+      "family_size": 3,
+      "family_annual_income": 200000,
+      "has_bank_account": true,
+      "has_aadhaar": true,
+      "is_woman": false,
+      "disability_status": true,
+      "disability_percentage": 65,
+      "disability_cert": true,
+      "caste_cert": false,
+      "is_student": true
+    },
+    "expected_result": {
+      "schemes": {
+        "stand_up_india": {
+          "status": "NO",
+          "note": "Requires SC/ST or woman; disability alone insufficient"
+        }
+      }
+    },
+    "test_focus": "EXCLUSION — Disability doesn't substitute for caste-based eligibility"
+  },
+  {
+    "id": "edge_010",
+    "name": "Joint family, only one son owns land",
+    "description": "PM Kisan 'family' definition unclear: joint vs nuclear? Only owner eligible or all members?",
+    "profile": {
+      "age": 62,
+      "state": "Haryana",
+      "caste": "OBC",
+      "annual_income": 95000,
+      "occupation": "farmer",
+      "family_size": 8,
+      "family_type": "joint",
+      "land_owner_in_family": true,
+      "applicant_owns_land": false,
+      "land_owned_acres_joint": 3.5,
+      "has_bank_account": true,
+      "has_aadhaar": true,
+      "is_woman": false,
+      "in_rural_area": true,
+      "relationship_to_owner": "father"
+    },
+    "expected_result": {
+      "schemes": {
+        "pm_kisan": {
+          "status": "AMBIGUOUS",
+          "note": "Does joint family share land ownership? Or only the legal owner can claim?"
+        }
+      }
+    },
+    "test_focus": "AGGREGATION AMBIGUITY — Family-level resources vs individual-level eligibility"
+  }
+]

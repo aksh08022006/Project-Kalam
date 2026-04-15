@@ -1,0 +1,761 @@
+Loading test data...
+PROJECT KALAM — EDGE CASE TEST REPORT
+Total schemes in engine: 15
+Total edge case tests: 10
+
+
+======================================================================
+TEST: edge_001 — Widow who recently remarried
+======================================================================
+Description: PM Matru Vandana says 'first live birth' — does marital history reset upon remarriage?
+Focus: AMBIGUITY — Scheme rules don't clarify how remarriage affects 'first live birth' criterion
+
+ENGINE RESULTS:
+
+  Pradhan Mantri Suraksha Bima Yojana (PMSBY)
+    Status: PARTIAL (Confidence: 0.77)
+    Partially qualifies: 0 preference(s) not met, 1 ambiguity/ies flagged.
+
+  Pradhan Mantri Jeevan Jyoti Bima Yojana (PMJJBY)
+    Status: PARTIAL (Confidence: 0.77)
+    Partially qualifies: 0 preference(s) not met, 1 ambiguity/ies flagged.
+
+  Atal Pension Yojana (APY)
+    Status: PARTIAL (Confidence: 0.77)
+    Partially qualifies: 0 preference(s) not met, 1 ambiguity/ies flagged.
+
+  National Scholarship Scheme (NSP)
+    Status: PARTIAL (Confidence: 0.77)
+    Partially qualifies: 0 preference(s) not met, 1 ambiguity/ies flagged.
+
+  Pradhan Mantri Ujjwala Yojana (PMUY)
+    Status: PARTIAL (Confidence: 0.69)
+    Partially qualifies: 0 preference(s) not met, 2 ambiguity/ies flagged.
+
+  Stand-Up India Scheme
+    Status: PARTIAL (Confidence: 0.64)
+    Partially qualifies: 1 preference(s) not met, 2 ambiguity/ies flagged.
+
+  Ayushman Bharat - PM-JAY (Pradhan Mantri Jan Arogya Yojana)
+    Status: PARTIAL (Confidence: 0.53)
+    Partially qualifies: 0 preference(s) not met, 4 ambiguity/ies flagged.
+
+  PM Kisan Samman Nidhi
+    Status: NO (Confidence: 0.00)
+    Does not qualify: 1 hard requirement(s) not met.
+
+  Mahatma Gandhi National Rural Employment Guarantee Act (MGNREGA)
+    Status: NO (Confidence: 0.00)
+    Does not qualify: 1 hard requirement(s) not met.
+
+  Pradhan Mantri Awas Yojana - Gramin (PMAY-G)
+    Status: NO (Confidence: 0.00)
+    Does not qualify: 1 hard requirement(s) not met.
+
+  Pradhan Mantri Awas Yojana - Urban (PMAY-U)
+    Status: NO (Confidence: 0.00)
+    Does not qualify: 1 hard requirement(s) not met.
+
+  Pradhan Mantri Jan Dhan Yojana (PMJDY)
+    Status: NO (Confidence: 0.00)
+    Does not qualify: 1 hard requirement(s) not met.
+
+  Pradhan Mantri Matru Vandana Yojana (PMMVY)
+    Status: NO (Confidence: 0.00)
+    Does not qualify: 1 hard requirement(s) not met.
+    ✓ CORRECTLY FLAGGED AS AMBIGUOUS: Is she entitled to PM Matru Vandana for first child of current marriage, or is prior child disqualifying?
+      Flags: 2 ambiguity/ies detected
+
+  Pradhan Mantri Poshan Shakti Nirman (PM POSHAN)
+    Status: NO (Confidence: 0.00)
+    Does not qualify: 1 hard requirement(s) not met.
+
+  PM Street Vendor's AtmaNirbhar Nidhi (PM SVANidhi)
+    Status: NO (Confidence: 0.00)
+    Does not qualify: 1 hard requirement(s) not met.
+
+──────────────────────────────────────────────────────────────────────
+
+======================================================================
+TEST: edge_002 — Farmer who leases land, not owns
+======================================================================
+Description: PM Kisan says 'land holding farmers' but ambiguous whether leased/mortgaged land counts.
+Focus: HARD FAILURE — Land ownership defined as owned, not leased. Shows why gap analysis matters.
+
+ENGINE RESULTS:
+
+  Pradhan Mantri Suraksha Bima Yojana (PMSBY)
+    Status: PARTIAL (Confidence: 0.77)
+    Partially qualifies: 0 preference(s) not met, 1 ambiguity/ies flagged.
+
+  Pradhan Mantri Jeevan Jyoti Bima Yojana (PMJJBY)
+    Status: PARTIAL (Confidence: 0.77)
+    Partially qualifies: 0 preference(s) not met, 1 ambiguity/ies flagged.
+
+  National Scholarship Scheme (NSP)
+    Status: PARTIAL (Confidence: 0.77)
+    Partially qualifies: 0 preference(s) not met, 1 ambiguity/ies flagged.
+
+  Pradhan Mantri Awas Yojana - Gramin (PMAY-G)
+    Status: PARTIAL (Confidence: 0.69)
+    Partially qualifies: 0 preference(s) not met, 2 ambiguity/ies flagged.
+
+  Pradhan Mantri Ujjwala Yojana (PMUY)
+    Status: PARTIAL (Confidence: 0.69)
+    Partially qualifies: 0 preference(s) not met, 2 ambiguity/ies flagged.
+
+  Stand-Up India Scheme
+    Status: PARTIAL (Confidence: 0.59)
+    Partially qualifies: 2 preference(s) not met, 2 ambiguity/ies flagged.
+
+  Mahatma Gandhi National Rural Employment Guarantee Act (MGNREGA)
+    Status: PARTIAL (Confidence: 0.53)
+    Partially qualifies: 0 preference(s) not met, 4 ambiguity/ies flagged.
+
+  Ayushman Bharat - PM-JAY (Pradhan Mantri Jan Arogya Yojana)
+    Status: PARTIAL (Confidence: 0.53)
+    Partially qualifies: 0 preference(s) not met, 4 ambiguity/ies flagged.
+
+  PM Kisan Samman Nidhi
+    Status: NO (Confidence: 0.00)
+    Does not qualify: 1 hard requirement(s) not met.
+    ❌ INCORRECT: Expected PARTIAL, got NO
+       Expected: Hard rule: land_owned_acres > 0 fails. Leased land status unknown.
+       Diagnosis:
+         - Hard failures: 1
+           • land_owned_acres: land_owned_acres > 0: user has 0 → failed
+         - Ambiguities: 3
+
+  Pradhan Mantri Awas Yojana - Urban (PMAY-U)
+    Status: NO (Confidence: 0.00)
+    Does not qualify: 1 hard requirement(s) not met.
+
+  Pradhan Mantri Jan Dhan Yojana (PMJDY)
+    Status: NO (Confidence: 0.00)
+    Does not qualify: 1 hard requirement(s) not met.
+
+  Atal Pension Yojana (APY)
+    Status: NO (Confidence: 0.00)
+    Does not qualify: 1 hard requirement(s) not met.
+
+  Pradhan Mantri Matru Vandana Yojana (PMMVY)
+    Status: NO (Confidence: 0.00)
+    Does not qualify: 1 hard requirement(s) not met.
+
+  Pradhan Mantri Poshan Shakti Nirman (PM POSHAN)
+    Status: NO (Confidence: 0.00)
+    Does not qualify: 1 hard requirement(s) not met.
+
+  PM Street Vendor's AtmaNirbhar Nidhi (PM SVANidhi)
+    Status: NO (Confidence: 0.00)
+    Does not qualify: 1 hard requirement(s) not met.
+
+──────────────────────────────────────────────────────────────────────
+
+======================================================================
+TEST: edge_003 — Has Aadhaar but no bank account
+======================================================================
+Description: PM Kisan, PM Jan Dhan require both. Does one without the other exclude the user?
+Focus: PREREQUISITE DEPENDENCY — PM Jan Dhan enables access to other schemes
+
+ENGINE RESULTS:
+
+  Pradhan Mantri Jan Dhan Yojana (PMJDY)
+    Status: PARTIAL (Confidence: 0.77)
+    Partially qualifies: 0 preference(s) not met, 1 ambiguity/ies flagged.
+    ❌ INCORRECT: Expected FULL, got PARTIAL
+       Expected: This scheme opens the bank account!
+       Diagnosis:
+         - Ambiguities: 1
+
+  National Scholarship Scheme (NSP)
+    Status: PARTIAL (Confidence: 0.77)
+    Partially qualifies: 0 preference(s) not met, 1 ambiguity/ies flagged.
+
+  Pradhan Mantri Awas Yojana - Gramin (PMAY-G)
+    Status: PARTIAL (Confidence: 0.69)
+    Partially qualifies: 0 preference(s) not met, 2 ambiguity/ies flagged.
+
+  Pradhan Mantri Ujjwala Yojana (PMUY)
+    Status: PARTIAL (Confidence: 0.69)
+    Partially qualifies: 0 preference(s) not met, 2 ambiguity/ies flagged.
+
+  Stand-Up India Scheme
+    Status: PARTIAL (Confidence: 0.64)
+    Partially qualifies: 1 preference(s) not met, 2 ambiguity/ies flagged.
+
+  Mahatma Gandhi National Rural Employment Guarantee Act (MGNREGA)
+    Status: PARTIAL (Confidence: 0.53)
+    Partially qualifies: 0 preference(s) not met, 4 ambiguity/ies flagged.
+
+  Ayushman Bharat - PM-JAY (Pradhan Mantri Jan Arogya Yojana)
+    Status: PARTIAL (Confidence: 0.53)
+    Partially qualifies: 0 preference(s) not met, 4 ambiguity/ies flagged.
+
+  PM Kisan Samman Nidhi
+    Status: NO (Confidence: 0.00)
+    Does not qualify: 1 hard requirement(s) not met.
+    ✓ CORRECT: Hard failure on bank_account == false
+
+  Pradhan Mantri Awas Yojana - Urban (PMAY-U)
+    Status: NO (Confidence: 0.00)
+    Does not qualify: 1 hard requirement(s) not met.
+
+  Pradhan Mantri Suraksha Bima Yojana (PMSBY)
+    Status: NO (Confidence: 0.00)
+    Does not qualify: 1 hard requirement(s) not met.
+
+  Pradhan Mantri Jeevan Jyoti Bima Yojana (PMJJBY)
+    Status: NO (Confidence: 0.00)
+    Does not qualify: 2 hard requirement(s) not met.
+
+  Atal Pension Yojana (APY)
+    Status: NO (Confidence: 0.00)
+    Does not qualify: 2 hard requirement(s) not met.
+
+  Pradhan Mantri Matru Vandana Yojana (PMMVY)
+    Status: NO (Confidence: 0.00)
+    Does not qualify: 1 hard requirement(s) not met.
+
+  Pradhan Mantri Poshan Shakti Nirman (PM POSHAN)
+    Status: NO (Confidence: 0.00)
+    Does not qualify: 1 hard requirement(s) not met.
+
+  PM Street Vendor's AtmaNirbhar Nidhi (PM SVANidhi)
+    Status: NO (Confidence: 0.00)
+    Does not qualify: 2 hard requirement(s) not met.
+
+──────────────────────────────────────────────────────────────────────
+
+======================================================================
+TEST: edge_004 — Street vendor without pre-COVID certificate
+======================================================================
+Description: SVANidhi requires pre-COVID street vending certificate. What if lost or never had?
+Focus: DOCUMENTATION BARRIER — Certificate requirement creates artificial exclusion despite actual street vending history
+
+ENGINE RESULTS:
+
+  Pradhan Mantri Suraksha Bima Yojana (PMSBY)
+    Status: PARTIAL (Confidence: 0.77)
+    Partially qualifies: 0 preference(s) not met, 1 ambiguity/ies flagged.
+
+  Pradhan Mantri Jeevan Jyoti Bima Yojana (PMJJBY)
+    Status: PARTIAL (Confidence: 0.77)
+    Partially qualifies: 0 preference(s) not met, 1 ambiguity/ies flagged.
+
+  Atal Pension Yojana (APY)
+    Status: PARTIAL (Confidence: 0.77)
+    Partially qualifies: 0 preference(s) not met, 1 ambiguity/ies flagged.
+
+  National Scholarship Scheme (NSP)
+    Status: PARTIAL (Confidence: 0.77)
+    Partially qualifies: 0 preference(s) not met, 1 ambiguity/ies flagged.
+
+  Pradhan Mantri Awas Yojana - Gramin (PMAY-G)
+    Status: PARTIAL (Confidence: 0.69)
+    Partially qualifies: 0 preference(s) not met, 2 ambiguity/ies flagged.
+
+  Pradhan Mantri Ujjwala Yojana (PMUY)
+    Status: PARTIAL (Confidence: 0.69)
+    Partially qualifies: 0 preference(s) not met, 2 ambiguity/ies flagged.
+
+  Stand-Up India Scheme
+    Status: PARTIAL (Confidence: 0.59)
+    Partially qualifies: 2 preference(s) not met, 2 ambiguity/ies flagged.
+
+  Mahatma Gandhi National Rural Employment Guarantee Act (MGNREGA)
+    Status: PARTIAL (Confidence: 0.53)
+    Partially qualifies: 0 preference(s) not met, 4 ambiguity/ies flagged.
+
+  Ayushman Bharat - PM-JAY (Pradhan Mantri Jan Arogya Yojana)
+    Status: PARTIAL (Confidence: 0.53)
+    Partially qualifies: 0 preference(s) not met, 4 ambiguity/ies flagged.
+
+  PM Kisan Samman Nidhi
+    Status: NO (Confidence: 0.00)
+    Does not qualify: 1 hard requirement(s) not met.
+
+  Pradhan Mantri Awas Yojana - Urban (PMAY-U)
+    Status: NO (Confidence: 0.00)
+    Does not qualify: 1 hard requirement(s) not met.
+
+  Pradhan Mantri Jan Dhan Yojana (PMJDY)
+    Status: NO (Confidence: 0.00)
+    Does not qualify: 1 hard requirement(s) not met.
+
+  Pradhan Mantri Matru Vandana Yojana (PMMVY)
+    Status: NO (Confidence: 0.00)
+    Does not qualify: 1 hard requirement(s) not met.
+
+  Pradhan Mantri Poshan Shakti Nirman (PM POSHAN)
+    Status: NO (Confidence: 0.00)
+    Does not qualify: 1 hard requirement(s) not met.
+
+  PM Street Vendor's AtmaNirbhar Nidhi (PM SVANidhi)
+    Status: NO (Confidence: 0.00)
+    Does not qualify: 1 hard requirement(s) not met.
+    ✓ CORRECT: Hard rule: covid_vending_cert == false blocks eligibility
+
+──────────────────────────────────────────────────────────────────────
+
+======================================================================
+TEST: edge_005 — 17-year-old student
+======================================================================
+Description: NSP requires age restrictions; other schemes might cover via education support.
+Focus: AGE CUTOFF — Different schemes have overlapping but distinct age boundaries
+
+ENGINE RESULTS:
+
+  National Scholarship Scheme (NSP)
+    Status: PARTIAL (Confidence: 0.72)
+    Partially qualifies: 1 preference(s) not met, 1 ambiguity/ies flagged.
+    ❌ INCORRECT: Expected NO, got PARTIAL
+       Expected: Age < 18 disqualifies from National Scholarship Scheme
+       Diagnosis:
+         - Soft failures: 1
+         - Ambiguities: 1
+
+  Pradhan Mantri Ujjwala Yojana (PMUY)
+    Status: PARTIAL (Confidence: 0.69)
+    Partially qualifies: 0 preference(s) not met, 2 ambiguity/ies flagged.
+
+  Stand-Up India Scheme
+    Status: PARTIAL (Confidence: 0.59)
+    Partially qualifies: 2 preference(s) not met, 2 ambiguity/ies flagged.
+
+  Ayushman Bharat - PM-JAY (Pradhan Mantri Jan Arogya Yojana)
+    Status: PARTIAL (Confidence: 0.53)
+    Partially qualifies: 0 preference(s) not met, 4 ambiguity/ies flagged.
+
+  PM Kisan Samman Nidhi
+    Status: NO (Confidence: 0.00)
+    Does not qualify: 1 hard requirement(s) not met.
+
+  Mahatma Gandhi National Rural Employment Guarantee Act (MGNREGA)
+    Status: NO (Confidence: 0.00)
+    Does not qualify: 2 hard requirement(s) not met.
+
+  Pradhan Mantri Awas Yojana - Gramin (PMAY-G)
+    Status: NO (Confidence: 0.00)
+    Does not qualify: 1 hard requirement(s) not met.
+
+  Pradhan Mantri Awas Yojana - Urban (PMAY-U)
+    Status: NO (Confidence: 0.00)
+    Does not qualify: 1 hard requirement(s) not met.
+
+  Pradhan Mantri Jan Dhan Yojana (PMJDY)
+    Status: NO (Confidence: 0.00)
+    Does not qualify: 1 hard requirement(s) not met.
+
+  Pradhan Mantri Suraksha Bima Yojana (PMSBY)
+    Status: NO (Confidence: 0.00)
+    Does not qualify: 1 hard requirement(s) not met.
+
+  Pradhan Mantri Jeevan Jyoti Bima Yojana (PMJJBY)
+    Status: NO (Confidence: 0.00)
+    Does not qualify: 1 hard requirement(s) not met.
+
+  Atal Pension Yojana (APY)
+    Status: NO (Confidence: 0.00)
+    Does not qualify: 1 hard requirement(s) not met.
+
+  Pradhan Mantri Matru Vandana Yojana (PMMVY)
+    Status: NO (Confidence: 0.00)
+    Does not qualify: 1 hard requirement(s) not met.
+
+  Pradhan Mantri Poshan Shakti Nirman (PM POSHAN)
+    Status: NO (Confidence: 0.00)
+    Does not qualify: 1 hard requirement(s) not met.
+    ❌ INCORRECT: Expected FULL, got NO
+       Expected: Age 6-14 criterion met if in eligible school
+       Diagnosis:
+         - Hard failures: 1
+           • age: age <= 14: user has 17 → failed
+         - Ambiguities: 1
+
+  PM Street Vendor's AtmaNirbhar Nidhi (PM SVANidhi)
+    Status: NO (Confidence: 0.00)
+    Does not qualify: 1 hard requirement(s) not met.
+
+──────────────────────────────────────────────────────────────────────
+
+======================================================================
+TEST: edge_006 — SC woman running a business
+======================================================================
+Description: Stand-Up India targets SC/ST + women. Double eligibility — does one satisfy or do both conditions apply?
+Focus: ELIGIBILITY INTERSECTION — Clarify if multiple criteria are AND or OR logic
+
+ENGINE RESULTS:
+
+  Pradhan Mantri Suraksha Bima Yojana (PMSBY)
+    Status: PARTIAL (Confidence: 0.77)
+    Partially qualifies: 0 preference(s) not met, 1 ambiguity/ies flagged.
+
+  Pradhan Mantri Jeevan Jyoti Bima Yojana (PMJJBY)
+    Status: PARTIAL (Confidence: 0.77)
+    Partially qualifies: 0 preference(s) not met, 1 ambiguity/ies flagged.
+
+  Atal Pension Yojana (APY)
+    Status: PARTIAL (Confidence: 0.77)
+    Partially qualifies: 0 preference(s) not met, 1 ambiguity/ies flagged.
+
+  Pradhan Mantri Ujjwala Yojana (PMUY)
+    Status: PARTIAL (Confidence: 0.69)
+    Partially qualifies: 0 preference(s) not met, 2 ambiguity/ies flagged.
+
+  Pradhan Mantri Matru Vandana Yojana (PMMVY)
+    Status: PARTIAL (Confidence: 0.69)
+    Partially qualifies: 0 preference(s) not met, 2 ambiguity/ies flagged.
+
+  Stand-Up India Scheme
+    Status: PARTIAL (Confidence: 0.69)
+    Partially qualifies: 0 preference(s) not met, 2 ambiguity/ies flagged.
+    ❌ INCORRECT: Expected FULL, got PARTIAL
+       Expected: SC + woman = multiple eligibility pathways (likely 'or' logic, not 'and')
+       Diagnosis:
+         - Ambiguities: 2
+
+  Pradhan Mantri Awas Yojana - Gramin (PMAY-G)
+    Status: PARTIAL (Confidence: 0.64)
+    Partially qualifies: 1 preference(s) not met, 2 ambiguity/ies flagged.
+
+  Mahatma Gandhi National Rural Employment Guarantee Act (MGNREGA)
+    Status: PARTIAL (Confidence: 0.53)
+    Partially qualifies: 0 preference(s) not met, 4 ambiguity/ies flagged.
+
+  Ayushman Bharat - PM-JAY (Pradhan Mantri Jan Arogya Yojana)
+    Status: PARTIAL (Confidence: 0.50)
+    Partially qualifies: 1 preference(s) not met, 4 ambiguity/ies flagged.
+
+  PM Kisan Samman Nidhi
+    Status: NO (Confidence: 0.00)
+    Does not qualify: 1 hard requirement(s) not met.
+
+  Pradhan Mantri Awas Yojana - Urban (PMAY-U)
+    Status: NO (Confidence: 0.00)
+    Does not qualify: 1 hard requirement(s) not met.
+
+  Pradhan Mantri Jan Dhan Yojana (PMJDY)
+    Status: NO (Confidence: 0.00)
+    Does not qualify: 1 hard requirement(s) not met.
+
+  National Scholarship Scheme (NSP)
+    Status: NO (Confidence: 0.00)
+    Does not qualify: 1 hard requirement(s) not met.
+
+  Pradhan Mantri Poshan Shakti Nirman (PM POSHAN)
+    Status: NO (Confidence: 0.00)
+    Does not qualify: 1 hard requirement(s) not met.
+
+  PM Street Vendor's AtmaNirbhar Nidhi (PM SVANidhi)
+    Status: NO (Confidence: 0.00)
+    Does not qualify: 1 hard requirement(s) not met.
+
+──────────────────────────────────────────────────────────────────────
+
+======================================================================
+TEST: edge_007 — Migrant worker registered in Bihar, lives in Maharashtra
+======================================================================
+Description: MGNREGA is state-specific. Rural residency definition unclear for migrants.
+Focus: STATE JURISDICTION — Scheme implementation varies by state; no unified rule for migrants
+
+ENGINE RESULTS:
+
+  Pradhan Mantri Jan Dhan Yojana (PMJDY)
+    Status: PARTIAL (Confidence: 0.77)
+    Partially qualifies: 0 preference(s) not met, 1 ambiguity/ies flagged.
+
+  National Scholarship Scheme (NSP)
+    Status: PARTIAL (Confidence: 0.77)
+    Partially qualifies: 0 preference(s) not met, 1 ambiguity/ies flagged.
+
+  Pradhan Mantri Awas Yojana - Gramin (PMAY-G)
+    Status: PARTIAL (Confidence: 0.69)
+    Partially qualifies: 0 preference(s) not met, 2 ambiguity/ies flagged.
+
+  Pradhan Mantri Ujjwala Yojana (PMUY)
+    Status: PARTIAL (Confidence: 0.69)
+    Partially qualifies: 0 preference(s) not met, 2 ambiguity/ies flagged.
+
+  Stand-Up India Scheme
+    Status: PARTIAL (Confidence: 0.59)
+    Partially qualifies: 2 preference(s) not met, 2 ambiguity/ies flagged.
+
+  Mahatma Gandhi National Rural Employment Guarantee Act (MGNREGA)
+    Status: PARTIAL (Confidence: 0.53)
+    Partially qualifies: 0 preference(s) not met, 4 ambiguity/ies flagged.
+    ✓ CORRECTLY FLAGGED AS AMBIGUOUS: Which state's residency rules apply? MGNREGA enrollment by state, but migrant status unclear.
+      Flags: 4 ambiguity/ies detected
+
+  Ayushman Bharat - PM-JAY (Pradhan Mantri Jan Arogya Yojana)
+    Status: PARTIAL (Confidence: 0.53)
+    Partially qualifies: 0 preference(s) not met, 4 ambiguity/ies flagged.
+
+  PM Kisan Samman Nidhi
+    Status: NO (Confidence: 0.00)
+    Does not qualify: 2 hard requirement(s) not met.
+
+  Pradhan Mantri Awas Yojana - Urban (PMAY-U)
+    Status: NO (Confidence: 0.00)
+    Does not qualify: 1 hard requirement(s) not met.
+
+  Pradhan Mantri Suraksha Bima Yojana (PMSBY)
+    Status: NO (Confidence: 0.00)
+    Does not qualify: 1 hard requirement(s) not met.
+
+  Pradhan Mantri Jeevan Jyoti Bima Yojana (PMJJBY)
+    Status: NO (Confidence: 0.00)
+    Does not qualify: 1 hard requirement(s) not met.
+
+  Atal Pension Yojana (APY)
+    Status: NO (Confidence: 0.00)
+    Does not qualify: 2 hard requirement(s) not met.
+
+  Pradhan Mantri Matru Vandana Yojana (PMMVY)
+    Status: NO (Confidence: 0.00)
+    Does not qualify: 1 hard requirement(s) not met.
+
+  Pradhan Mantri Poshan Shakti Nirman (PM POSHAN)
+    Status: NO (Confidence: 0.00)
+    Does not qualify: 1 hard requirement(s) not met.
+
+  PM Street Vendor's AtmaNirbhar Nidhi (PM SVANidhi)
+    Status: NO (Confidence: 0.00)
+    Does not qualify: 2 hard requirement(s) not met.
+
+──────────────────────────────────────────────────────────────────────
+
+======================================================================
+TEST: edge_008 — BPL family with one member in government service
+======================================================================
+Description: PM Kisan excludes govt employees. Does one member's govt job exclude entire family?
+Focus: FAMILY-LEVEL RULES — Unclear if exclusion applies to individual applicant or household
+
+ENGINE RESULTS:
+
+  Pradhan Mantri Suraksha Bima Yojana (PMSBY)
+    Status: PARTIAL (Confidence: 0.77)
+    Partially qualifies: 0 preference(s) not met, 1 ambiguity/ies flagged.
+
+  National Scholarship Scheme (NSP)
+    Status: PARTIAL (Confidence: 0.77)
+    Partially qualifies: 0 preference(s) not met, 1 ambiguity/ies flagged.
+
+  Pradhan Mantri Ujjwala Yojana (PMUY)
+    Status: PARTIAL (Confidence: 0.69)
+    Partially qualifies: 0 preference(s) not met, 2 ambiguity/ies flagged.
+
+  Pradhan Mantri Awas Yojana - Gramin (PMAY-G)
+    Status: PARTIAL (Confidence: 0.64)
+    Partially qualifies: 1 preference(s) not met, 2 ambiguity/ies flagged.
+
+  PM Kisan Samman Nidhi
+    Status: PARTIAL (Confidence: 0.61)
+    Partially qualifies: 0 preference(s) not met, 3 ambiguity/ies flagged.
+    ✓ CORRECTLY FLAGGED AS AMBIGUOUS: Is govt employee criterion evaluated at applicant level or family level?
+      Flags: 3 ambiguity/ies detected
+
+  Stand-Up India Scheme
+    Status: PARTIAL (Confidence: 0.59)
+    Partially qualifies: 2 preference(s) not met, 2 ambiguity/ies flagged.
+
+  Mahatma Gandhi National Rural Employment Guarantee Act (MGNREGA)
+    Status: PARTIAL (Confidence: 0.53)
+    Partially qualifies: 0 preference(s) not met, 4 ambiguity/ies flagged.
+
+  Ayushman Bharat - PM-JAY (Pradhan Mantri Jan Arogya Yojana)
+    Status: PARTIAL (Confidence: 0.50)
+    Partially qualifies: 1 preference(s) not met, 4 ambiguity/ies flagged.
+
+  Pradhan Mantri Awas Yojana - Urban (PMAY-U)
+    Status: NO (Confidence: 0.00)
+    Does not qualify: 1 hard requirement(s) not met.
+
+  Pradhan Mantri Jan Dhan Yojana (PMJDY)
+    Status: NO (Confidence: 0.00)
+    Does not qualify: 1 hard requirement(s) not met.
+
+  Pradhan Mantri Jeevan Jyoti Bima Yojana (PMJJBY)
+    Status: NO (Confidence: 0.00)
+    Does not qualify: 1 hard requirement(s) not met.
+
+  Atal Pension Yojana (APY)
+    Status: NO (Confidence: 0.00)
+    Does not qualify: 1 hard requirement(s) not met.
+
+  Pradhan Mantri Matru Vandana Yojana (PMMVY)
+    Status: NO (Confidence: 0.00)
+    Does not qualify: 1 hard requirement(s) not met.
+
+  Pradhan Mantri Poshan Shakti Nirman (PM POSHAN)
+    Status: NO (Confidence: 0.00)
+    Does not qualify: 1 hard requirement(s) not met.
+
+  PM Street Vendor's AtmaNirbhar Nidhi (PM SVANidhi)
+    Status: NO (Confidence: 0.00)
+    Does not qualify: 1 hard requirement(s) not met.
+
+──────────────────────────────────────────────────────────────────────
+
+======================================================================
+TEST: edge_009 — Person with disability, no caste certificate
+======================================================================
+Description: Some schemes have disability provisions. Do they overlap with caste-based schemes?
+Focus: EXCLUSION — Disability doesn't substitute for caste-based eligibility
+
+ENGINE RESULTS:
+
+  Pradhan Mantri Suraksha Bima Yojana (PMSBY)
+    Status: PARTIAL (Confidence: 0.77)
+    Partially qualifies: 0 preference(s) not met, 1 ambiguity/ies flagged.
+
+  Pradhan Mantri Jeevan Jyoti Bima Yojana (PMJJBY)
+    Status: PARTIAL (Confidence: 0.77)
+    Partially qualifies: 0 preference(s) not met, 1 ambiguity/ies flagged.
+
+  Atal Pension Yojana (APY)
+    Status: PARTIAL (Confidence: 0.77)
+    Partially qualifies: 0 preference(s) not met, 1 ambiguity/ies flagged.
+
+  National Scholarship Scheme (NSP)
+    Status: PARTIAL (Confidence: 0.77)
+    Partially qualifies: 0 preference(s) not met, 1 ambiguity/ies flagged.
+
+  Pradhan Mantri Awas Yojana - Gramin (PMAY-G)
+    Status: PARTIAL (Confidence: 0.69)
+    Partially qualifies: 0 preference(s) not met, 2 ambiguity/ies flagged.
+
+  Pradhan Mantri Ujjwala Yojana (PMUY)
+    Status: PARTIAL (Confidence: 0.69)
+    Partially qualifies: 0 preference(s) not met, 2 ambiguity/ies flagged.
+
+  Stand-Up India Scheme
+    Status: PARTIAL (Confidence: 0.59)
+    Partially qualifies: 2 preference(s) not met, 2 ambiguity/ies flagged.
+    ❌ INCORRECT: Expected NO, got PARTIAL
+       Expected: Requires SC/ST or woman; disability alone insufficient
+       Diagnosis:
+         - Soft failures: 2
+         - Ambiguities: 2
+
+  Mahatma Gandhi National Rural Employment Guarantee Act (MGNREGA)
+    Status: PARTIAL (Confidence: 0.53)
+    Partially qualifies: 0 preference(s) not met, 4 ambiguity/ies flagged.
+
+  Ayushman Bharat - PM-JAY (Pradhan Mantri Jan Arogya Yojana)
+    Status: PARTIAL (Confidence: 0.53)
+    Partially qualifies: 0 preference(s) not met, 4 ambiguity/ies flagged.
+
+  PM Kisan Samman Nidhi
+    Status: NO (Confidence: 0.00)
+    Does not qualify: 1 hard requirement(s) not met.
+
+  Pradhan Mantri Awas Yojana - Urban (PMAY-U)
+    Status: NO (Confidence: 0.00)
+    Does not qualify: 1 hard requirement(s) not met.
+
+  Pradhan Mantri Jan Dhan Yojana (PMJDY)
+    Status: NO (Confidence: 0.00)
+    Does not qualify: 1 hard requirement(s) not met.
+
+  Pradhan Mantri Matru Vandana Yojana (PMMVY)
+    Status: NO (Confidence: 0.00)
+    Does not qualify: 1 hard requirement(s) not met.
+
+  Pradhan Mantri Poshan Shakti Nirman (PM POSHAN)
+    Status: NO (Confidence: 0.00)
+    Does not qualify: 1 hard requirement(s) not met.
+
+  PM Street Vendor's AtmaNirbhar Nidhi (PM SVANidhi)
+    Status: NO (Confidence: 0.00)
+    Does not qualify: 1 hard requirement(s) not met.
+
+──────────────────────────────────────────────────────────────────────
+
+======================================================================
+TEST: edge_010 — Joint family, only one son owns land
+======================================================================
+Description: PM Kisan 'family' definition unclear: joint vs nuclear? Only owner eligible or all members?
+Focus: AGGREGATION AMBIGUITY — Family-level resources vs individual-level eligibility
+
+ENGINE RESULTS:
+
+  Pradhan Mantri Suraksha Bima Yojana (PMSBY)
+    Status: PARTIAL (Confidence: 0.77)
+    Partially qualifies: 0 preference(s) not met, 1 ambiguity/ies flagged.
+
+  National Scholarship Scheme (NSP)
+    Status: PARTIAL (Confidence: 0.77)
+    Partially qualifies: 0 preference(s) not met, 1 ambiguity/ies flagged.
+
+  Pradhan Mantri Awas Yojana - Gramin (PMAY-G)
+    Status: PARTIAL (Confidence: 0.69)
+    Partially qualifies: 0 preference(s) not met, 2 ambiguity/ies flagged.
+
+  Pradhan Mantri Ujjwala Yojana (PMUY)
+    Status: PARTIAL (Confidence: 0.69)
+    Partially qualifies: 0 preference(s) not met, 2 ambiguity/ies flagged.
+
+  PM Kisan Samman Nidhi
+    Status: PARTIAL (Confidence: 0.61)
+    Partially qualifies: 0 preference(s) not met, 3 ambiguity/ies flagged.
+    ✓ CORRECTLY FLAGGED AS AMBIGUOUS: Does joint family share land ownership? Or only the legal owner can claim?
+      Flags: 3 ambiguity/ies detected
+
+  Stand-Up India Scheme
+    Status: PARTIAL (Confidence: 0.59)
+    Partially qualifies: 2 preference(s) not met, 2 ambiguity/ies flagged.
+
+  Mahatma Gandhi National Rural Employment Guarantee Act (MGNREGA)
+    Status: PARTIAL (Confidence: 0.53)
+    Partially qualifies: 0 preference(s) not met, 4 ambiguity/ies flagged.
+
+  Ayushman Bharat - PM-JAY (Pradhan Mantri Jan Arogya Yojana)
+    Status: PARTIAL (Confidence: 0.53)
+    Partially qualifies: 0 preference(s) not met, 4 ambiguity/ies flagged.
+
+  Pradhan Mantri Awas Yojana - Urban (PMAY-U)
+    Status: NO (Confidence: 0.00)
+    Does not qualify: 1 hard requirement(s) not met.
+
+  Pradhan Mantri Jan Dhan Yojana (PMJDY)
+    Status: NO (Confidence: 0.00)
+    Does not qualify: 1 hard requirement(s) not met.
+
+  Pradhan Mantri Jeevan Jyoti Bima Yojana (PMJJBY)
+    Status: NO (Confidence: 0.00)
+    Does not qualify: 1 hard requirement(s) not met.
+
+  Atal Pension Yojana (APY)
+    Status: NO (Confidence: 0.00)
+    Does not qualify: 1 hard requirement(s) not met.
+
+  Pradhan Mantri Matru Vandana Yojana (PMMVY)
+    Status: NO (Confidence: 0.00)
+    Does not qualify: 1 hard requirement(s) not met.
+
+  Pradhan Mantri Poshan Shakti Nirman (PM POSHAN)
+    Status: NO (Confidence: 0.00)
+    Does not qualify: 1 hard requirement(s) not met.
+
+  PM Street Vendor's AtmaNirbhar Nidhi (PM SVANidhi)
+    Status: NO (Confidence: 0.00)
+    Does not qualify: 1 hard requirement(s) not met.
+
+──────────────────────────────────────────────────────────────────────
+
+
+======================================================================
+TEST SUMMARY
+======================================================================
+Total edge case tests: 10
+Tests focusing on ambiguities: 0
+Tests focusing on exclusion/barriers: 10
+
+Key insights:
+1. AMBIGUITY DETECTION: Engine should flag conflicting/unclear rules
+2. HARD FAILURES: Engine should clearly explain hard requirement failures
+3. PREREQUISITE AWARENESS: Engine should hint at prerequisite schemes
+4. STATE/CONTEXT SENSITIVITY: Engine should note jurisdiction-specific rules
+
+✓ Report saved to logs/edge_case_test_report.txt
