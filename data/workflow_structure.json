@@ -1,0 +1,214 @@
+{
+  "workflow_name": "Government Schemes Discovery - 5062 Schemes Framework",
+  "version": "2.0",
+  "inspiration": "https://www.india.gov.in/my-government/schemes/search",
+  "target_total_schemes": 5062,
+  "current_implementation": "15 flagship schemes with new workflow",
+  "workflow_description": "7-level progressive filtering to help citizens find eligible government schemes",
+  "workflow_stages": [
+    {
+      "stage": 1,
+      "name": "Category Selection",
+      "question": "Which category are you interested in?",
+      "question_type": "single_select",
+      "options": [
+        "Agriculture & Rural Development",
+        "Business & Self-Employment",
+        "Education & Learning",
+        "Health & Wellness",
+        "Housing & Shelter",
+        "Jobs & Skill Development",
+        "Social Welfare & Empowerment",
+        "Financial Services & Banking",
+        "Infrastructure & Industries",
+        "Others"
+      ],
+      "purpose": "Filter schemes by major category",
+      "typical_schemes_after_this_stage": "~500+ schemes"
+    },
+    {
+      "stage": 2,
+      "name": "Life Stage",
+      "question": "What is your current life stage?",
+      "question_type": "single_select",
+      "options": [
+        "Student",
+        "Working Professional",
+        "Entrepreneur/Self-Employed",
+        "Farmer",
+        "Senior Citizen",
+        "Homemaker",
+        "Unemployed",
+        "Retired"
+      ],
+      "purpose": "Narrow down schemes based on life situation",
+      "typical_schemes_after_this_stage": "~250-300 schemes"
+    },
+    {
+      "stage": 3,
+      "name": "Specific Need",
+      "question": "What is your specific need? (Select all that apply)",
+      "question_type": "multi_select",
+      "options": [
+        "Financial Assistance/Grants",
+        "Training & Skill Development",
+        "Employment Assistance",
+        "Housing Support",
+        "Education Support",
+        "Health Support",
+        "Loans & Credit",
+        "Subsidies",
+        "Infrastructure Support",
+        "Technology Access"
+      ],
+      "purpose": "Identify type of support needed",
+      "typical_schemes_after_this_stage": "~100-150 schemes"
+    },
+    {
+      "stage": 4,
+      "name": "Demographics",
+      "question": "Do any of these categories describe you? (Select all that apply)",
+      "question_type": "multi_select",
+      "options": [
+        "SC/ST/OBC (Scheduled Caste/Tribe/Other Backward Class)",
+        "Woman/Female",
+        "Minority Community",
+        "Person with Disability (PwD)",
+        "Transgender",
+        "Below Poverty Line (BPL)",
+        "Ex-Serviceman/Serviceman",
+        "None of the above"
+      ],
+      "purpose": "Apply demographic-based filters",
+      "typical_schemes_after_this_stage": "~50-80 schemes"
+    },
+    {
+      "stage": 5,
+      "name": "Age & Marital Status",
+      "question": "What is your age group and marital status?",
+      "question_type": "multi_select",
+      "options": [
+        "Age 18-25",
+        "Age 25-40",
+        "Age 40-60",
+        "Age 60+",
+        "Single",
+        "Married",
+        "Widow/Widower",
+        "Divorced/Separated"
+      ],
+      "purpose": "Filter by age and marital eligibility",
+      "typical_schemes_after_this_stage": "~30-50 schemes"
+    },
+    {
+      "stage": 6,
+      "name": "Location & Income",
+      "question": "What is your region and annual family income?",
+      "question_type": "single_select",
+      "options": [
+        "Rural, Income < ₹1.5 Lakh",
+        "Rural, Income ₹1.5-3 Lakh",
+        "Rural, Income ₹3-5 Lakh",
+        "Rural, Income > ₹5 Lakh",
+        "Urban, Income < ₹1.5 Lakh",
+        "Urban, Income ₹1.5-3 Lakh",
+        "Urban, Income ₹3-5 Lakh",
+        "Urban, Income > ₹5 Lakh"
+      ],
+      "purpose": "Final income-based filtering",
+      "typical_schemes_after_this_stage": "~10-25 schemes (FINAL MATCHES)"
+    },
+    {
+      "stage": 7,
+      "name": "Matching Schemes with Requirements",
+      "question": "Here are all schemes you are eligible for:",
+      "question_type": "results",
+      "display_format": "schemes_with_complete_requirements",
+      "purpose": "Show matched schemes with requirements and where to get documents"
+    }
+  ],
+  "post_matching_display": {
+    "new_feature_name": "Requirements & Where to Get",
+    "description": "For each matched scheme, show complete requirements and sources",
+    "sections": [
+      {
+        "section_name": "Documents Required",
+        "shows": [
+          "Aadhaar Card → https://uidai.gov.in/ | UIDAI office",
+          "Bank Passbook → Your bank | NEFT/RTGS enabled",
+          "Income Certificate → Taluk/Revenue office | With income proof"
+        ]
+      },
+      {
+        "section_name": "Certifications/Approvals",
+        "shows": [
+          "SC/ST Certificate → SDM/Tahsil office",
+          "Income Proof → Bank/Employer/Government office",
+          "Domicile Certificate → District administration"
+        ]
+      },
+      {
+        "section_name": "Application Details",
+        "shows": [
+          "Official application URL",
+          "Scheme nodal officer contact",
+          "Application deadline",
+          "Step-by-step application guide"
+        ]
+      }
+    ]
+  },
+  "technical_implementation": {
+    "question_engine": "engine/question_engine.py",
+    "filtering_algorithm": "Progressive filtering with count tracking",
+    "scheme_database": "data/schemes/rules.json (currently 15 schemes)",
+    "requirement_mapping": "Centralized requirement sources",
+    "future_expansion": "Scale to 5062 schemes from myScheme.gov.in"
+  },
+  "user_journey": {
+    "start": "User opens app",
+    "step_1": "Category question → filters from 5062 to ~500 schemes",
+    "step_2": "Life stage question → filters to ~250-300 schemes",
+    "step_3": "Specific need question → filters to ~100-150 schemes",
+    "step_4": "Demographics question → filters to ~50-80 schemes",
+    "step_5": "Age/marital status question → filters to ~30-50 schemes",
+    "step_6": "Income/region question → filters to 10-25 schemes (FINAL)",
+    "step_7": "Display matching schemes with requirements & sources",
+    "action": "User clicks on scheme → sees requirements, where to get docs, application URL"
+  },
+  "data_structure_for_each_scheme": {
+    "id": "scheme_id",
+    "name": "Scheme Name",
+    "ministry": "Ministry/Department",
+    "description": "What the scheme is about",
+    "benefits": ["benefit1", "benefit2"],
+    "eligibility_criteria": {
+      "category": "agriculture",
+      "demographics": ["farmer", "rural"],
+      "income_limit": 500000,
+      "age_range": "18-65"
+    },
+    "requirements": [
+      {
+        "category": "Documents",
+        "items": ["Aadhaar", "Bank Passbook"],
+        "where_to_get": {
+          "Aadhaar": "https://uidai.gov.in/ | UIDAI office",
+          "Bank Passbook": "Your bank"
+        }
+      }
+    ],
+    "application_url": "https://scheme.gov.in/apply",
+    "contact_info": "Phone/Email"
+  },
+  "expansion_roadmap": {
+    "phase_1": "15 flagship schemes (CURRENT)",
+    "phase_2": "50 schemes from major ministries",
+    "phase_3": "200 schemes across all categories",
+    "phase_4": "1000 schemes (central + state)",
+    "phase_5": "5062 schemes (complete myScheme.gov.in database)"
+  },
+  "data_source": "myScheme.gov.in + India.gov.in",
+  "api_integration": "Future: Real-time data from government APIs",
+  "version_updated": "April 15, 2026"
+}
