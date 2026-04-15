@@ -3,8 +3,12 @@
 app.py — Flask web server for Project Kalam.
 
 Endpoints:
-  POST /chat — Accept natural language input (Hinglish), update profile, return assistant reply
-  GET / — Serve main chat UI
+  GET  /               - Main web interface
+  POST /chat          - Chat endpoint (natural language)
+  GET  /questions     - Get question for specific level
+  POST /filter        - Apply filter and get remaining schemes
+  GET  /scheme/<id>   - Get scheme with full details
+  GET  /health        - Health check
 
 Session state persists profile fields and tracks which ones are filled.
 """
@@ -21,18 +25,23 @@ from flask import Flask, render_template, request, jsonify
 from engine.rule_engine import RuleEngine
 from engine.gap_analyser import GapAnalyser
 from engine.doc_checklist import DocChecklist
+from engine.question_engine import QuestionEngine
 
 # Initialize Flask app
 app = Flask(__name__, template_folder="interface/templates", static_folder="interface/static")
 app.secret_key = os.getenv("SECRET_KEY", "dev-key-change-in-production")
 
-# Initialize engine, gap analyser, and doc checker
+# Initialize engines
 try:
     with open("data/schemes/rules.json", "r") as f:
         rules_data = json.load(f)
     engine = RuleEngine(rules_data)
     gap_analyser = GapAnalyser()
     doc_checker = DocChecklist()
+    
+    # Initialize question engine with extracted schemes
+    question_engine = QuestionEngine()
+    print(f"✓ Question engine initialized with {len(question_engine.all_schemes)} schemes")
 except FileNotFoundError as e:
     print(f"Error loading schemes: {e}")
     exit(1)
@@ -334,6 +343,144 @@ def get_session(session_id: str):
     """Get current session state."""
     session = get_or_create_session(session_id)
     return jsonify(session)
+
+
+# ====== NEW PHASE 1 ENDPOINTS ======
+
+@app.route("/health", methods=["GET"])
+def health_check():
+    """Health check endpoint"""
+    return jsonify({
+        "status": "healthy",
+        "timestamp": datetime.now().isoformat(),
+        "schemes_loaded": len(question_engine.all_schemes),
+        "version": "1.0.0",
+        "phase": "Phase 1"
+    })
+
+
+@app.route("/questions", methods=["GET"])
+def get_question():
+    """Get question for a specific level"""
+    try:
+        level = request.args.get("level", 1, type=int)
+        
+        if level < 1 or level > 7:
+            return jsonify({
+                "error": "Invalid level (1-7)"
+            }), 400
+        
+        from engine.question_engine import QuestionLevel
+        level_map = {
+            1: QuestionLevel.LEVEL_1,
+            2: QuestionLevel.LEVEL_2,
+            3: QuestionLevel.LEVEL_3,
+            4: QuestionLevel.LEVEL_4,
+            5: QuestionLevel.LEVEL_5,
+            6: QuestionLevel.LEVEL_6,
+            7: QuestionLevel.LEVEL_7
+        }
+        
+        question = question_engine.get_question(level_map[level])
+        
+        return jsonify({
+            "level": level,
+            "question": question.question_text,
+            "options": question.options,
+            "help_text": question.help_text,
+            "multiple_select": question.multiple_select
+        })
+    except Exception as e:
+        return jsonify({
+            "error": str(e)
+        }), 400
+
+
+@app.route("/filter", methods=["POST"])
+def apply_filter():
+    """Apply filter and get remaining schemes count"""
+    try:
+        data = request.json
+        level = data.get("level", 1)
+        answers = data.get("answers", [])
+        
+        if not isinstance(answers, list):
+            answers = [answers]
+        
+        from engine.question_engine import QuestionLevel
+        level_map = {
+            1: QuestionLevel.LEVEL_1,
+            2: QuestionLevel.LEVEL_2,
+            3: QuestionLevel.LEVEL_3,
+            4: QuestionLevel.LEVEL_4,
+            5: QuestionLevel.LEVEL_5,
+            6: QuestionLevel.LEVEL_6
+        }
+        
+        if level not in level_map:
+            return jsonify({"error": f"Invalid level: {level}"}), 400
+        
+        remaining = question_engine.apply_filter(level_map[level], answers)
+        
+        return jsonify({
+            "level": level,
+            "answers": answers,
+            "schemes_remaining": remaining,
+            "next_level": level + 1 if level < 6 else 7,
+            "message": f"✓ {remaining} schemes match your criteria"
+        })
+    except Exception as e:
+        return jsonify({
+            "error": str(e)
+        }), 400
+
+
+@app.route("/scheme/<scheme_id>", methods=["GET"])
+def get_scheme_details(scheme_id):
+    """Get full scheme details with requirements and where-to-get"""
+    try:
+        # Find scheme in database
+        scheme = None
+        for s in question_engine.all_schemes:
+            if s.get("scheme_id") == scheme_id:
+                scheme = s
+                break
+        
+        if not scheme:
+            return jsonify({
+                "error": f"Scheme {scheme_id} not found"
+            }), 404
+        
+        details = question_engine.get_scheme_with_requirements(scheme)
+        return jsonify(details)
+    except Exception as e:
+        return jsonify({
+            "error": str(e)
+        }), 400
+
+
+@app.route("/schemes", methods=["GET"])
+def list_schemes():
+    """List all available schemes with basic info"""
+    try:
+        schemes_summary = []
+        for scheme in question_engine.all_schemes:
+            schemes_summary.append({
+                "id": scheme.get("scheme_id"),
+                "name": scheme.get("scheme_name"),
+                "category": scheme.get("category"),
+                "ministry": scheme.get("ministry"),
+                "benefits": scheme.get("benefits", [])[:1]  # First benefit
+            })
+        
+        return jsonify({
+            "total_schemes": len(schemes_summary),
+            "schemes": schemes_summary
+        })
+    except Exception as e:
+        return jsonify({
+            "error": str(e)
+        }), 400
 
 
 @app.route("/health", methods=["GET"])

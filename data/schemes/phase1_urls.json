@@ -1,0 +1,233 @@
+{
+  "schemes": [
+    {
+      "name": "PM Kisan Samman Nidhi",
+      "url": "https://pmkisan.gov.in/"
+    },
+    {
+      "name": "MGNREGA",
+      "url": "https://nrega.nic.in/"
+    },
+    {
+      "name": "Pradhan Mantri Fasal Bima Yojana",
+      "url": "https://pmfby.gov.in/"
+    },
+    {
+      "name": "Soil Health Card Scheme",
+      "url": "https://soilhealth.dac.gov.in/"
+    },
+    {
+      "name": "Pradhan Mantri Krishi Sinchayee Yojana",
+      "url": "https://pmksy.gov.in/"
+    },
+    {
+      "name": "e-NAM (Electronic National Agriculture Market)",
+      "url": "https://www.enam.gov.in/"
+    },
+    {
+      "name": "Kisan Credit Card",
+      "url": "https://www.nabard.org/"
+    },
+    {
+      "name": "Paramparagat Krishi Vikas Yojana",
+      "url": "https://jhadc.gov.in/"
+    },
+    {
+      "name": "National Mission for Sustainable Agriculture",
+      "url": "https://nmsa.dac.gov.in/"
+    },
+    {
+      "name": "Agri Infrastructure Fund",
+      "url": "https://agriinfra.gov.in/"
+    },
+    {
+      "name": "PM-AASHA Scheme",
+      "url": "https://pmaasha.gov.in/"
+    },
+    {
+      "name": "Rashtriya Krishi Vikas Yojana",
+      "url": "https://rkvy.nic.in/"
+    },
+    {
+      "name": "Pradhan Mantri Scholarship Scheme",
+      "url": "https://www.pmss.gov.in/"
+    },
+    {
+      "name": "National Scholarship Portal",
+      "url": "https://scholarships.gov.in/"
+    },
+    {
+      "name": "Beti Bachao Beti Padhao",
+      "url": "https://wcd.nic.in/"
+    },
+    {
+      "name": "Skill India Mission",
+      "url": "https://www.skillindia.gov.in/"
+    },
+    {
+      "name": "Pradhan Mantri Kaushal Vikas Yojana",
+      "url": "https://pmkvyofficial.org/"
+    },
+    {
+      "name": "National Apprenticeship Promotion Scheme",
+      "url": "https://apprenticeshipindia.gov.in/"
+    },
+    {
+      "name": "Jan Shikshan Sansthan",
+      "url": "https://jss.nios.ac.in/"
+    },
+    {
+      "name": "Rashtriya Madhyamik Shiksha Abhiyan",
+      "url": "https://rmsa.nic.in/"
+    },
+    {
+      "name": "National Fellowship for Scheduled Castes/Tribes",
+      "url": "https://ugc.gov.in/"
+    },
+    {
+      "name": "INSPIRE Fellowship",
+      "url": "https://www.inspireawards-dst.gov.in/"
+    },
+    {
+      "name": "Ayushman Bharat - PM-JAY",
+      "url": "https://ayushmanbharat.gov.in/"
+    },
+    {
+      "name": "Rashtriya Swasthya Bima Yojana",
+      "url": "https://rsby.gov.in/"
+    },
+    {
+      "name": "Pradhan Mantri Matru Vandana Yojana",
+      "url": "https://pmmvy.nic.in/"
+    },
+    {
+      "name": "Suraksha Matritva Abhiyaan",
+      "url": "https://wcd.nic.in/"
+    },
+    {
+      "name": "POSHAN Abhiyaan",
+      "url": "https://poshanabhiyaan.gov.in/"
+    },
+    {
+      "name": "Janani Suraksha Yojana",
+      "url": "https://wcd.nic.in/"
+    },
+    {
+      "name": "National Programme for Prevention of Blindness",
+      "url": "https://www.nppb.gov.in/"
+    },
+    {
+      "name": "Rashtriya Dialysis Programme",
+      "url": "https://main.mohfw.gov.in/"
+    },
+    {
+      "name": "TB Harega Desh Badhega",
+      "url": "https://ntep.gov.in/"
+    },
+    {
+      "name": "Mahila Swaraksha Yojana",
+      "url": "https://wcd.nic.in/"
+    },
+    {
+      "name": "Senior Citizen Health Insurance",
+      "url": "https://main.mohfw.gov.in/"
+    },
+    {
+      "name": "Pradhan Mantri Awas Yojana - Urban",
+      "url": "https://pmaymis.gov.in/"
+    },
+    {
+      "name": "Pradhan Mantri Awas Yojana - Gramin",
+      "url": "https://pmayg.nic.in/"
+    },
+    {
+      "name": "Interest Subsidy Scheme for Affordable Housing",
+      "url": "https://credila.org/interest-subsidy/"
+    },
+    {
+      "name": "National Urban Livelihoods Mission",
+      "url": "https://nulm.gov.in/"
+    },
+    {
+      "name": "Deendayal Antyodaya Yojana",
+      "url": "https://nrlm.gov.in/"
+    },
+    {
+      "name": "Pradhan Mantri Jan Dhan Yojana",
+      "url": "https://jandhanyojana.gov.in/"
+    },
+    {
+      "name": "Atal Pension Yojana",
+      "url": "https://www.pib.gov.in/"
+    },
+    {
+      "name": "Pradhan Mantri Shram Yogi Maandhan",
+      "url": "https://maandhan.in/"
+    },
+    {
+      "name": "Indira Gandhi National Old Age Pension Scheme",
+      "url": "https://www.indiastack.org/"
+    },
+    {
+      "name": "Indira Gandhi National Widow Pension Scheme",
+      "url": "https://www.indiastack.org/"
+    },
+    {
+      "name": "Indira Gandhi National Disability Pension",
+      "url": "https://www.indiastack.org/"
+    },
+    {
+      "name": "National Social Assistance Programme",
+      "url": "https://nsap.nic.in/"
+    },
+    {
+      "name": "Pradhan Mantri Mudra Yojana",
+      "url": "https://www.mudra.org.in/"
+    },
+    {
+      "name": "Prime Minister Apprenticeship Scheme",
+      "url": "https://apprenticeshipindia.gov.in/"
+    },
+    {
+      "name": "Deen Dayal Upadhyaya Grameen Kaushal Yojana",
+      "url": "https://ddugky.gov.in/"
+    },
+    {
+      "name": "National Career Service Portal",
+      "url": "https://www.ncs.gov.in/"
+    },
+    {
+      "name": "Sukanya Samriddhi Yojana",
+      "url": "https://www.indiapost.gov.in/"
+    },
+    {
+      "name": "Public Provident Fund",
+      "url": "https://www.indiapost.gov.in/"
+    },
+    {
+      "name": "Senior Citizens Savings Scheme",
+      "url": "https://www.indiapost.gov.in/"
+    },
+    {
+      "name": "Pradhan Mantri Jeevan Bima Yojana",
+      "url": "https://pmjby.gov.in/"
+    },
+    {
+      "name": "Pradhan Mantri Suraksha Bima Yojana",
+      "url": "https://pmsby.gov.in/"
+    }
+  ],
+  "metadata": {
+    "total_schemes": 50,
+    "categories": {
+      "agriculture": 12,
+      "education": 12,
+      "health": 12,
+      "housing": 8,
+      "social_security": 10,
+      "employment": 6,
+      "finance": 8
+    },
+    "created_date": "2026-04-16"
+  }
+}

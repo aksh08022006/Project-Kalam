@@ -7,6 +7,8 @@ Similar to https://www.india.gov.in/my-government/schemes/search
 from dataclasses import dataclass, field
 from enum import Enum
 from typing import List, Dict, Optional, Any
+import json
+import os
 
 class QuestionLevel(Enum):
     """7-level hierarchy for scheme filtering"""
@@ -50,11 +52,20 @@ class Scheme:
 class QuestionEngine:
     """7-level question hierarchy for filtering 5062 schemes"""
     
-    def __init__(self):
-        self.all_schemes: List[Scheme] = []
+    def __init__(self, schemes_file: str = None):
+        self.all_schemes: List[Dict[str, Any]] = []
         self.current_filters: Dict[str, Any] = {}
         self.question_hierarchy = self._build_questions()
-        self.schemes_remaining = len(self.all_schemes)
+        self.schemes_remaining = 0
+        
+        # Load extracted schemes
+        if schemes_file is None:
+            schemes_file = os.path.join(
+                os.path.dirname(__file__),
+                '../data/schemes/extracted_schemes.json'
+            )
+        
+        self._load_schemes(schemes_file)
         
     def _build_questions(self) -> Dict[QuestionLevel, Question]:
         """Build the 7-level question hierarchy"""
@@ -217,24 +228,33 @@ class QuestionEngine:
         """Add a scheme to database"""
         self.all_schemes.append(scheme)
     
-    def get_scheme_with_requirements(self, scheme: Scheme) -> Dict[str, Any]:
+    def _load_schemes(self, schemes_file: str) -> None:
+        """Load schemes from extracted_schemes.json"""
+        try:
+            with open(schemes_file, 'r') as f:
+                data = json.load(f)
+                self.all_schemes = data.get('schemes', [])
+                self.schemes_remaining = len(self.all_schemes)
+                print(f"✓ Loaded {len(self.all_schemes)} schemes")
+        except FileNotFoundError:
+            print(f"✗ Schemes file not found: {schemes_file}")
+            self.all_schemes = []
+    
+    def get_scheme_with_requirements(self, scheme: Dict[str, Any]) -> Dict[str, Any]:
         """Get scheme with requirements and where to get them"""
         result = {
-            "scheme_name": scheme.name,
-            "ministry": scheme.ministry,
-            "description": scheme.description,
-            "benefits": scheme.benefits,
+            "scheme_id": scheme.get("scheme_id"),
+            "scheme_name": scheme.get("scheme_name"),
+            "ministry": scheme.get("ministry"),
+            "description": scheme.get("description"),
+            "benefits": scheme.get("benefits", []),
             "requirements_by_category": {},
-            "application_url": scheme.application_url,
-            "contact_info": scheme.contact_info
+            "where_to_get_requirements": scheme.get("where_to_get_requirements", {}),
+            "application_url": scheme.get("application_url"),
+            "contact_info": scheme.get("contact_info", {}),
+            "funding_amount": scheme.get("funding_amount"),
+            "timeline": scheme.get("timeline_or_deadline")
         }
-        
-        for req in scheme.requirements:
-            result["requirements_by_category"][req.category] = {
-                "items": req.items,
-                "where_to_get": req.where_to_get
-            }
-        
         return result
 
 # Requirement sources mapping
