@@ -1,536 +1,104 @@
 {
-  "total_schemes": 50,
-  "extraction_timestamp": "2026-04-16T10:30:00Z",
   "schemes": [
     {
       "scheme_id": "pm_kisan",
       "scheme_name": "PM Kisan Samman Nidhi",
-      "ministry": "Ministry of Agriculture & Farmers Welfare",
+      "ministry": "Ministry of Agriculture",
       "category": "agriculture",
-      "description": "Direct income support to all landholding farmers",
-      "benefits": ["₹6,000/year direct income support"],
-      "eligibility_criteria": {
-        "level_1_category": "agriculture",
-        "level_2_life_stage": ["farmer"],
-        "level_3_specific_need": ["financial_assistance"],
-        "level_4_demographics": [],
-        "level_5_age_marital": [],
-        "level_6_income_region": ["rural"]
-      },
-      "requirements": {
-        "documents": ["Aadhaar Card", "Bank Account Passbook", "Land Certificate"],
-        "certifications": [],
-        "digital_requirements": ["NEFT-enabled bank account"]
-      },
-      "where_to_get_requirements": {
-        "Aadhaar Card": "https://uidai.gov.in/ | UIDAI office in your district",
-        "Bank Account Passbook": "Your bank | NEFT/RTGS enabled",
-        "Land Certificate": "Revenue office (Patwari) in your taluk"
-      },
-      "application_process": [
-        "Visit PM Kisan official website (pmkisan.gov.in)",
-        "Click 'New Farmer Registration'",
-        "Enter Aadhaar number and land details",
-        "Upload required documents",
-        "Submit application",
-        "Wait for verification (5-7 days)"
-      ],
-      "application_url": "https://pmkisan.gov.in/",
-      "contact_info": {
-        "helpline": "1800-180-1551",
-        "email": "pmkisan-ict@nic.in",
-        "website": "https://pmkisan.gov.in/"
-      },
-      "funding_amount": "₹6,000 per year",
-      "timeline_or_deadline": "Ongoing, benefits disbursed quarterly (Jan, Apr, Jul, Oct)",
-      "official_source_url": "https://pmkisan.gov.in/"
+      "benefits": ["₹6,000/year"],
+      "eligibility_criteria": {"level_1": "agricultural_income"},
+      "where_to_get_requirements": {"Aadhaar": "https://uidai.gov.in/"},
+      "contact_info": {"website": "https://pmkisan.gov.in/"}
     },
     {
       "scheme_id": "mgnrega",
       "scheme_name": "MGNREGA",
       "ministry": "Ministry of Rural Development",
       "category": "employment",
-      "description": "Guaranteed 100 days of employment per financial year to rural workers",
-      "benefits": ["100 days employment/year", "Minimum wage as per state"],
-      "eligibility_criteria": {
-        "level_1_category": "employment",
-        "level_2_life_stage": ["unemployed"],
-        "level_3_specific_need": ["employment"],
-        "level_4_demographics": ["bpl"],
-        "level_5_age_marital": [],
-        "level_6_income_region": ["rural", "income < ₹1.5L"]
-      },
-      "requirements": {
-        "documents": ["Aadhaar Card", "Voter ID/ID Proof", "Job Card"],
-        "certifications": [],
-        "digital_requirements": []
-      },
-      "where_to_get_requirements": {
-        "Aadhaar Card": "https://uidai.gov.in/ | UIDAI office",
-        "Voter ID": "Election Commission | District office",
-        "Job Card": "Gram Panchayat | Apply at local panchayat office"
-      },
-      "application_process": [
-        "Visit Gram Panchayat office",
-        "Request MGNREGA Job Card",
-        "Submit identity documents",
-        "Get enrolled and receive job card",
-        "Ask for work when needed",
-        "Get wages after completion"
-      ],
-      "application_url": "https://nrega.nic.in/",
-      "contact_info": {
-        "helpline": "1800-180-1555",
-        "website": "https://nrega.nic.in/"
-      },
-      "funding_amount": "Variable (minimum wage)",
-      "timeline_or_deadline": "Ongoing throughout financial year (April-March)",
-      "official_source_url": "https://nrega.nic.in/"
+      "benefits": ["100 days employment/year"],
+      "eligibility_criteria": {"level_1": "rural_resident"},
+      "where_to_get_requirements": {"ID": "Any government ID"},
+      "contact_info": {"website": "https://nrega.nic.in/"}
     },
     {
       "scheme_id": "ayushman_bharat",
-      "scheme_name": "Ayushman Bharat - PM-JAY",
-      "ministry": "Ministry of Labour and Employment",
+      "scheme_name": "Ayushman Bharat",
+      "ministry": "Ministry of Labour",
       "category": "health",
-      "description": "₹5 lakh health insurance coverage for poor and vulnerable families",
-      "benefits": ["₹5,00,000 health insurance coverage per year"],
-      "eligibility_criteria": {
-        "level_1_category": "health",
-        "level_2_life_stage": ["all"],
-        "level_3_specific_need": ["health"],
-        "level_4_demographics": ["bpl", "secc"],
-        "level_5_age_marital": [],
-        "level_6_income_region": []
-      },
-      "requirements": {
-        "documents": ["Aadhaar Card", "SECC data/BPL certificate"],
-        "certifications": ["BPL Ration Card"],
-        "digital_requirements": []
-      },
-      "where_to_get_requirements": {
-        "Aadhaar Card": "https://uidai.gov.in/ | UIDAI office",
-        "BPL Certificate": "Municipality/Gram Panchayat | District welfare office",
-        "SECC Data": "Check https://ayushmanbharat.gov.in/ for verification"
-      },
-      "application_process": [
-        "Check eligibility on https://ayushmanbharat.gov.in/",
-        "Visit authorized hospital with ID proof",
-        "No separate registration needed (based on SECC 2011 data)",
-        "Use Ayushman card for treatment"
-      ],
-      "application_url": "https://ayushmanbharat.gov.in/",
-      "contact_info": {
-        "helpline": "1800-111-565",
-        "website": "https://ayushmanbharat.gov.in/"
-      },
-      "funding_amount": "₹5,00,000 per family per year",
-      "timeline_or_deadline": "Ongoing, already enrolled if eligible under SECC 2011",
-      "official_source_url": "https://ayushmanbharat.gov.in/"
+      "benefits": ["₹5 lakhs health insurance"],
+      "eligibility_criteria": {"level_1": "bpl_status"},
+      "where_to_get_requirements": {"Aadhaar": "https://uidai.gov.in/"},
+      "contact_info": {"website": "https://pmjay.gov.in/"}
     },
     {
       "scheme_id": "pmay_gramin",
-      "scheme_name": "Pradhan Mantri Awas Yojana - Gramin",
+      "scheme_name": "PM Awas Yojana",
       "ministry": "Ministry of Rural Development",
       "category": "housing",
-      "description": "Housing assistance for rural poor to build/renovate houses",
-      "benefits": ["₹1.2 lakh for basic house construction", "₹1.6 lakh in difficult areas"],
-      "eligibility_criteria": {
-        "level_1_category": "housing",
-        "level_2_life_stage": ["all"],
-        "level_3_specific_need": ["housing"],
-        "level_4_demographics": ["bpl"],
-        "level_5_age_marital": [],
-        "level_6_income_region": ["rural", "income < ₹3L"]
-      },
-      "requirements": {
-        "documents": ["Aadhaar Card", "Land ownership proof", "Bank account"],
-        "certifications": [],
-        "digital_requirements": ["Bank account for fund transfer"]
-      },
-      "where_to_get_requirements": {
-        "Aadhaar Card": "https://uidai.gov.in/ | UIDAI office",
-        "Land Certificate": "Revenue office | District administration",
-        "Bank Account": "Any bank | Bring ID proof and address proof"
-      },
-      "application_process": [
-        "Visit Gram Panchayat office",
-        "Submit application for housing",
-        "Submit land proof and documents",
-        "Wait for inspection and approval",
-        "Receive funds in 2-3 tranches"
-      ],
-      "application_url": "https://pmayg.nic.in/",
-      "contact_info": {
-        "helpline": "1800-233-1393",
-        "website": "https://pmayg.nic.in/"
-      },
-      "funding_amount": "₹1.2 to ₹1.6 lakh",
-      "timeline_or_deadline": "Ongoing applications, funds released within 90 days",
-      "official_source_url": "https://pmayg.nic.in/"
+      "benefits": ["₹1.2 lakh housing support"],
+      "eligibility_criteria": {"level_1": "rural_resident"},
+      "where_to_get_requirements": {"Land": "Property papers"},
+      "contact_info": {"website": "https://pmay-g.nic.in/"}
     },
     {
       "scheme_id": "skill_india",
       "scheme_name": "Skill India Mission",
       "ministry": "Ministry of Skill Development",
       "category": "education",
-      "description": "Skill training for youth to enhance employability",
-      "benefits": ["Free skill training", "Placement assistance"],
-      "eligibility_criteria": {
-        "level_1_category": "education",
-        "level_2_life_stage": ["student", "unemployed"],
-        "level_3_specific_need": ["training"],
-        "level_4_demographics": [],
-        "level_5_age_marital": ["18-40"],
-        "level_6_income_region": []
-      },
-      "requirements": {
-        "documents": ["Aadhaar Card", "10th/12th pass certificate"],
-        "certifications": [],
-        "digital_requirements": []
-      },
-      "where_to_get_requirements": {
-        "Aadhaar Card": "https://uidai.gov.in/",
-        "School Certificate": "School where you studied"
-      },
-      "application_process": [
-        "Visit https://www.skillindia.gov.in/",
-        "Browse available training courses",
-        "Apply online through portal",
-        "Attend training at nearest center",
-        "Get placement assistance after completion"
-      ],
-      "application_url": "https://www.skillindia.gov.in/",
-      "contact_info": {
-        "helpline": "9366331288",
-        "website": "https://www.skillindia.gov.in/"
-      },
-      "funding_amount": "100% sponsored training",
-      "timeline_or_deadline": "Ongoing, courses vary in duration (1-6 months)",
-      "official_source_url": "https://www.skillindia.gov.in/"
+      "benefits": ["Free skill training"],
+      "eligibility_criteria": {"level_1": "age_18_40"},
+      "where_to_get_requirements": {"ID": "Any government ID"},
+      "contact_info": {"website": "https://skillindia.gov.in/"}
     },
     {
-      "scheme_id": "pmjdy",
-      "scheme_name": "Pradhan Mantri Jan Dhan Yojana",
+      "scheme_id": "jan_dhan",
+      "scheme_name": "PM Jan Dhan Yojana",
       "ministry": "Ministry of Finance",
       "category": "finance",
-      "description": "Universal bank account access for all citizens",
-      "benefits": ["Zero-balance bank account", "₹1L overdraft facility", "₹2L insurance"],
-      "eligibility_criteria": {
-        "level_1_category": "finance",
-        "level_2_life_stage": ["all"],
-        "level_3_specific_need": ["financial_assistance"],
-        "level_4_demographics": [],
-        "level_5_age_marital": [],
-        "level_6_income_region": ["all"]
-      },
-      "requirements": {
-        "documents": ["Aadhaar Card or any ID proof"],
-        "certifications": [],
-        "digital_requirements": []
-      },
-      "where_to_get_requirements": {
-        "Aadhaar Card": "https://uidai.gov.in/",
-        "ID Proof": "Voter ID, Driving License, or Passport"
-      },
-      "application_process": [
-        "Visit any bank with Aadhaar",
-        "Fill account opening form",
-        "Submit ID proof",
-        "Get account opened instantly",
-        "Receive RuPay card"
-      ],
-      "application_url": "https://jandhanyojana.gov.in/",
-      "contact_info": {
-        "helpline": "1800-180-1111",
-        "website": "https://jandhanyojana.gov.in/"
-      },
-      "funding_amount": "Zero-balance account + benefits",
-      "timeline_or_deadline": "Ongoing, account opened same day",
-      "official_source_url": "https://jandhanyojana.gov.in/"
+      "benefits": ["Zero-balance account"],
+      "eligibility_criteria": {"level_1": "indian_citizen"},
+      "where_to_get_requirements": {"ID": "Any government ID"},
+      "contact_info": {"website": "https://pmjdy.gov.in/"}
     },
     {
       "scheme_id": "sukanya_samriddhi",
       "scheme_name": "Sukanya Samriddhi Yojana",
       "ministry": "Ministry of Finance",
       "category": "finance",
-      "description": "Savings scheme for girl child education and marriage",
-      "benefits": ["High interest rate (7.6% per year)", "Tax benefits"],
-      "eligibility_criteria": {
-        "level_1_category": "finance",
-        "level_2_life_stage": ["homemaker"],
-        "level_3_specific_need": ["financial_assistance", "education"],
-        "level_4_demographics": ["woman"],
-        "level_5_age_marital": [],
-        "level_6_income_region": []
-      },
-      "requirements": {
-        "documents": ["Birth certificate of girl child", "Parent ID proof", "Address proof"],
-        "certifications": [],
-        "digital_requirements": []
-      },
-      "where_to_get_requirements": {
-        "Birth Certificate": "Municipality office or hospital records",
-        "ID Proof": "Voter ID, PAN, or Aadhaar",
-        "Address Proof": "Electricity bill, utility bill, or rental agreement"
-      },
-      "application_process": [
-        "Visit post office with documents",
-        "Fill SSY application form",
-        "Submit documents",
-        "Deposit initial amount (₹250 minimum)",
-        "Account opened, get passbook"
-      ],
-      "application_url": "https://www.indiapost.gov.in/",
-      "contact_info": {
-        "helpline": "1800-180-3000",
-        "website": "https://www.indiapost.gov.in/"
-      },
-      "funding_amount": "Variable deposits, 7.6% interest",
-      "timeline_or_deadline": "Account valid for 21 years (girl's age 10-31)",
-      "official_source_url": "https://www.indiapost.gov.in/"
+      "benefits": ["7.6% interest rate"],
+      "eligibility_criteria": {"level_1": "girl_child"},
+      "where_to_get_requirements": {"Birth": "Girl child proof"},
+      "contact_info": {"website": "https://www.indiapost.gov.in/"}
     },
     {
-      "scheme_id": "pmkvy",
-      "scheme_name": "Pradhan Mantri Kaushal Vikas Yojana",
+      "scheme_id": "pm_kaushal",
+      "scheme_name": "PM Kaushal Vikas Yojana",
       "ministry": "Ministry of Skill Development",
       "category": "education",
-      "description": "Skill training with placement assistance for youth",
-      "benefits": ["Free vocational training", "₹500 placement assistance", "Government certification"],
-      "eligibility_criteria": {
-        "level_1_category": "education",
-        "level_2_life_stage": ["student", "unemployed"],
-        "level_3_specific_need": ["training", "employment"],
-        "level_4_demographics": [],
-        "level_5_age_marital": ["18-45"],
-        "level_6_income_region": []
-      },
-      "requirements": {
-        "documents": ["Aadhaar Card", "10th pass certificate"],
-        "certifications": [],
-        "digital_requirements": []
-      },
-      "where_to_get_requirements": {
-        "Aadhaar Card": "https://uidai.gov.in/",
-        "School Certificate": "School records"
-      },
-      "application_process": [
-        "Register on https://pmkvyofficial.org/",
-        "Search for skills and training centers",
-        "Enroll in chosen course",
-        "Complete training (2-6 weeks)",
-        "Receive certification and placement support"
-      ],
-      "application_url": "https://pmkvyofficial.org/",
-      "contact_info": {
-        "helpline": "8800055555",
-        "website": "https://pmkvyofficial.org/"
-      },
-      "funding_amount": "100% sponsored training",
-      "timeline_or_deadline": "Ongoing, various course durations available",
-      "official_source_url": "https://pmkvyofficial.org/"
+      "benefits": ["Free skill training"],
+      "eligibility_criteria": {"level_1": "age_18_45"},
+      "where_to_get_requirements": {"ID": "Any government ID"},
+      "contact_info": {"website": "https://www.pmkvyofficial.org/"}
     },
     {
       "scheme_id": "fasal_bima",
-      "scheme_name": "Pradhan Mantri Fasal Bima Yojana",
+      "scheme_name": "PM Fasal Bima Yojana",
       "ministry": "Ministry of Agriculture",
       "category": "agriculture",
-      "description": "Crop insurance scheme for protecting farmers from crop losses",
-      "benefits": ["Insurance coverage for crop failure", "Claims process simplified"],
-      "eligibility_criteria": {
-        "level_1_category": "agriculture",
-        "level_2_life_stage": ["farmer"],
-        "level_3_specific_need": ["financial_assistance"],
-        "level_4_demographics": [],
-        "level_5_age_marital": [],
-        "level_6_income_region": ["rural"]
-      },
-      "requirements": {
-        "documents": ["Aadhaar Card", "Land records", "Loan account details (if applicable)"],
-        "certifications": [],
-        "digital_requirements": []
-      },
-      "where_to_get_requirements": {
-        "Aadhaar Card": "https://uidai.gov.in/",
-        "Land Records": "Revenue office | Patwari/Taluk office",
-        "Loan Details": "Bank where you have agricultural loan"
-      },
-      "application_process": [
-        "Visit primary agricultural credit society or bank",
-        "Request PMFBY registration",
-        "Submit land records",
-        "Pay insurance premium (farmer contribution varies)",
-        "Get insurance certificate"
-      ],
-      "application_url": "https://pmfby.gov.in/",
-      "contact_info": {
-        "helpline": "1800-110-001",
-        "website": "https://pmfby.gov.in/"
-      },
-      "funding_amount": "Insurance coverage up to ₹2L per hectare",
-      "timeline_or_deadline": "Registration during sowing season (varies by crop)",
-      "official_source_url": "https://pmfby.gov.in/"
-    },
-    {
-      "scheme_id": "old_age_pension",
-      "scheme_name": "Indira Gandhi National Old Age Pension Scheme",
-      "ministry": "Ministry of Social Justice",
-      "category": "social_security",
-      "description": "Monthly pension for senior citizens aged 60+",
-      "benefits": ["₹500 per month pension"],
-      "eligibility_criteria": {
-        "level_1_category": "social_security",
-        "level_2_life_stage": ["senior_citizen"],
-        "level_3_specific_need": ["financial_assistance"],
-        "level_4_demographics": ["bpl"],
-        "level_5_age_marital": ["60+"],
-        "level_6_income_region": []
-      },
-      "requirements": {
-        "documents": ["Aadhaar Card", "Age proof", "Income certificate"],
-        "certifications": ["BPL certificate"],
-        "digital_requirements": []
-      },
-      "where_to_get_requirements": {
-        "Aadhaar Card": "https://uidai.gov.in/",
-        "Age Proof": "Birth certificate or voter ID",
-        "Income Certificate": "Revenue office | Taluk office",
-        "BPL Certificate": "Gram Panchayat or Municipality"
-      },
-      "application_process": [
-        "Visit local Gram Panchayat or ASHA worker",
-        "Submit application with documents",
-        "Get approval",
-        "Receive pension monthly (deposited in bank account)"
-      ],
-      "application_url": "https://www.indiastack.org/",
-      "contact_info": {
-        "website": "https://www.indiastack.org/",
-        "contact": "Gram Panchayat office"
-      },
-      "funding_amount": "₹500 per month",
-      "timeline_or_deadline": "Ongoing after approval",
-      "official_source_url": "https://www.indiastack.org/"
-    },
-    {
-      "scheme_id": "pmmvy",
-      "scheme_name": "Pradhan Mantri Matru Vandana Yojana",
-      "ministry": "Ministry of Women and Child Development",
-      "category": "health",
-      "description": "Cash assistance for pregnant and lactating women",
-      "benefits": ["₹5,000 direct benefit transfer"],
-      "eligibility_criteria": {
-        "level_1_category": "health",
-        "level_2_life_stage": ["homemaker"],
-        "level_3_specific_need": ["health"],
-        "level_4_demographics": ["woman"],
-        "level_5_age_marital": ["married"],
-        "level_6_income_region": []
-      },
-      "requirements": {
-        "documents": ["Aadhaar Card", "Pregnancy documentation", "Bank account"],
-        "certifications": [],
-        "digital_requirements": ["Bank account for transfer"]
-      },
-      "where_to_get_requirements": {
-        "Aadhaar Card": "https://uidai.gov.in/",
-        "Pregnancy Certificate": "ASHA worker or ANM | Government health center",
-        "Bank Account": "Any bank"
-      },
-      "application_process": [
-        "Visit ASHA worker or Anganwadi center",
-        "Register pregnancy",
-        "Submit documents",
-        "Get benefit transfer in 2-3 installments",
-        "Claimed during pregnancy and after delivery"
-      ],
-      "application_url": "https://pmmvy.nic.in/",
-      "contact_info": {
-        "helpline": "1800-180-1111",
-        "website": "https://pmmvy.nic.in/"
-      },
-      "funding_amount": "₹5,000 total (₹1000 + ₹2000 + ₹2000)",
-      "timeline_or_deadline": "During pregnancy and up to 6 months after delivery",
-      "official_source_url": "https://pmmvy.nic.in/"
+      "benefits": ["Crop insurance"],
+      "eligibility_criteria": {"level_1": "farmer"},
+      "where_to_get_requirements": {"Land": "Property papers"},
+      "contact_info": {"website": "https://pmfby.gov.in/"}
     },
     {
       "scheme_id": "mudra_yojana",
-      "scheme_name": "Pradhan Mantri Mudra Yojana",
-      "ministry": "Ministry of MSME",
+      "scheme_name": "PM Mudra Yojana",
+      "ministry": "Ministry of Finance",
       "category": "finance",
-      "description": "Loans up to ₹10 lakh for self-employed and small businesses",
-      "benefits": ["Up to ₹10 lakh microloans", "Flexible repayment", "No collateral required"],
-      "eligibility_criteria": {
-        "level_1_category": "finance",
-        "level_2_life_stage": ["entrepreneur"],
-        "level_3_specific_need": ["loans", "business"],
-        "level_4_demographics": [],
-        "level_5_age_marital": ["18+"],
-        "level_6_income_region": []
-      },
-      "requirements": {
-        "documents": ["Aadhaar Card", "PAN Card", "Business plan"],
-        "certifications": [],
-        "digital_requirements": ["Bank account"]
-      },
-      "where_to_get_requirements": {
-        "Aadhaar Card": "https://uidai.gov.in/",
-        "PAN Card": "https://www.incometaxindia.gov.in/",
-        "Bank Account": "Any bank"
-      },
-      "application_process": [
-        "Visit MUDRA bank or bank branch",
-        "Submit application with business plan",
-        "Bank reviews and approves loan",
-        "Funds disbursed within 7-10 days"
-      ],
-      "application_url": "https://www.mudra.org.in/",
-      "contact_info": {
-        "helpline": "1800-180-1111",
-        "website": "https://www.mudra.org.in/"
-      },
-      "funding_amount": "Up to ₹10 lakh",
-      "timeline_or_deadline": "Ongoing applications, approval within 10 days",
-      "official_source_url": "https://www.mudra.org.in/"
-    },
-    {
-      "scheme_id": "apy",
-      "scheme_name": "Atal Pension Yojana",
-      "ministry": "Ministry of Labour and Employment",
-      "category": "social_security",
-      "description": "Guaranteed pension scheme for unorganized workers",
-      "benefits": ["₹1000 to ₹5000 monthly pension from age 60"],
-      "eligibility_criteria": {
-        "level_1_category": "social_security",
-        "level_2_life_stage": ["working"],
-        "level_3_specific_need": ["financial_assistance"],
-        "level_4_demographics": [],
-        "level_5_age_marital": ["18-40"],
-        "level_6_income_region": []
-      },
-      "requirements": {
-        "documents": ["Aadhaar Card", "Bank account"],
-        "certifications": [],
-        "digital_requirements": ["Bank account for contributions"]
-      },
-      "where_to_get_requirements": {
-        "Aadhaar Card": "https://uidai.gov.in/",
-        "Bank Account": "Any bank"
-      },
-      "application_process": [
-        "Visit bank with Aadhaar",
-        "Open APY account",
-        "Choose pension amount (₹1000-₹5000)",
-        "Make monthly contributions (deducted automatically)",
-        "Receive pension from age 60"
-      ],
-      "application_url": "https://www.pib.gov.in/",
-      "contact_info": {
-        "helpline": "1800-180-1111",
-        "website": "https://www.pib.gov.in/"
-      },
-      "funding_amount": "₹1000 to ₹5000 per month from age 60",
-      "timeline_or_deadline": "Contributions till age 60, benefits from 60+",
-      "official_source_url": "https://www.pib.gov.in/"
+      "benefits": ["Microloans up to ₹10 lakh"],
+      "eligibility_criteria": {"level_1": "entrepreneur"},
+      "where_to_get_requirements": {"Business": "Project report"},
+      "contact_info": {"website": "https://www.mudrayojana.gov.in/"}
     }
   ]
 }
