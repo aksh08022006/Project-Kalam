@@ -1,0 +1,92 @@
+{
+  "extraction_templates": {
+    "scheme_overview": {
+      "description": "Extract basic scheme information",
+      "prompt_template": "For the scheme '{scheme_name}', extract:\n1. Official scheme name and ID\n2. Administering ministry and department\n3. Launch date and current status\n4. Official government source URL\n5. Overall purpose and goal in 2-3 sentences\n\nReturn as JSON with keys: name, id, ministry, launch_date, status, source_url, purpose",
+      "required_fields": ["name", "id", "ministry", "source_url", "purpose"]
+    },
+    
+    "eligibility_mapping": {
+      "description": "Map scheme eligibility to 7-level questions",
+      "prompt_template": "For the scheme '{scheme_name}', identify who is eligible by mapping to these 7-level filters:\n\nLEVEL 1 - CATEGORY: Agriculture|Education|Health|Business|Housing|Social|Jobs|Finance|Infrastructure|Others\nLEVEL 2 - LIFE STAGE: Student|Working Professional|Entrepreneur|Farmer|Senior Citizen|Homemaker|Unemployed|Retired\nLEVEL 3 - SPECIFIC NEED: Financial Assistance|Training|Employment|Housing|Education|Health|Loans|Subsidies|Infrastructure|Tech (can select multiple)\nLEVEL 4 - DEMOGRAPHICS: SC/ST/OBC|Woman|Minority|PwD|Transgender|BPL|Ex-Serviceman (can select multiple, or None)\nLEVEL 5 - AGE/MARITAL: Age groups (18-25|25-40|40-60|60+) and Marital status (Single|Married|Widow|Divorced) (can select multiple)\nLEVEL 6 - INCOME/REGION: Rural|Urban and Income brackets (< ₹1.5L | ₹1.5-3L | ₹3-5L | > ₹5L)\n\nFor each level, identify if scheme applies and provide specific criteria.\nReturn as JSON with keys: level_1_category, level_2_life_stage, level_3_need, level_4_demographics, level_5_age_marital, level_6_income_region, plus 'exclusion_criteria'",
+      "required_fields": ["level_1_category", "level_2_life_stage", "level_3_need", "level_6_income_region"]
+    },
+    
+    "benefits_extraction": {
+      "description": "Extract detailed benefits offered by scheme",
+      "prompt_template": "For the scheme '{scheme_name}', extract:\n1. Primary benefit (cash transfer, service, loan, insurance, etc.)\n2. Benefit amount or quantity (if applicable, quantify in ₹ or units)\n3. Payment frequency or timeline\n4. Maximum benefit per beneficiary (if capped)\n5. One-time vs recurring benefit\n6. Secondary benefits (if any)\n7. Who receives payment (direct to beneficiary, through employer, etc.)\n\nReturn as JSON with keys: primary_benefit, amount, unit, frequency, max_benefit, payment_mode, secondary_benefits",
+      "required_fields": ["primary_benefit", "amount", "frequency"]
+    },
+    
+    "requirements_extraction": {
+      "description": "Extract ALL required documents and certifications",
+      "prompt_template": "For the scheme '{scheme_name}', list EVERY requirement needed to apply:\n\n1. DOCUMENTS REQUIRED: List each document explicitly\n   Examples: Aadhaar Card, PAN Card, Bank Account Passbook, Ration Card, Caste Certificate, Income Certificate, Medical Certificate, etc.\n\n2. CERTIFICATIONS/APPROVALS: Any certifications or approvals needed\n   Examples: SC/ST Caste Certificate, BPL Certificate, Disability Certificate, Medical Report, Land Ownership Certificate, etc.\n\n3. DIGITAL REQUIREMENTS: Any digital setup needed\n   Examples: Active bank account, NEFT-enabled account, Aadhaar linked to phone, Digital signature, Email ID, Mobile number, etc.\n\n4. PROPERTY/ASSET REQUIREMENTS: Any property or asset requirements\n   Examples: Land ownership, Agricultural land, Building site, Business registration, etc.\n\n5. ELIGIBILITY DOCUMENTS: Documents proving eligibility\n   Examples: Proof of age, Proof of address, Proof of employment, Proof of disability, etc.\n\nReturn as JSON with keys: documents, certifications, digital_requirements, property_requirements, eligibility_documents\nFor each category, provide a list of required items with brief descriptions.",
+      "required_fields": ["documents", "certifications", "digital_requirements"]
+    },
+    
+    "requirement_sourcing": {
+      "description": "For each requirement, identify WHERE to get it",
+      "prompt_template": "For each requirement listed for '{scheme_name}':\n\nProvide:\n1. OFFICIAL WEBSITE/URL where it can be obtained or applied\n2. PHYSICAL LOCATION/OFFICE where it can be obtained\n3. PROCESSING TIME if applicable\n4. FEE/COST if any\n5. ALTERNATIVE METHODS (if any)\n\nExample format:\nRequirement: Aadhaar Card\n- Official website: https://uidai.gov.in/\n- Physical location: UIDAI Enrollment Center in your district | Government office\n- Processing time: 10-15 days\n- Cost: Free (for residents)\n- Alternative: Can use existing Aadhaar + 12-digit number\n\nReturn as JSON where each requirement maps to: {official_website, physical_location, processing_time, cost, alternatives}",
+      "required_fields": ["official_website", "physical_location"]
+    },
+    
+    "application_process": {
+      "description": "Extract step-by-step application process",
+      "prompt_template": "For the scheme '{scheme_name}', provide the COMPLETE application process:\n\n1. WHO CAN APPLY: Eligible applicant categories\n2. STEP-BY-STEP PROCESS: Number each step clearly\n   - Step 1: [First action]\n   - Step 2: [Second action]\n   - etc.\n3. APPLICATION MODE: Online | Offline | Both\n4. WHERE TO APPLY: Specific portal/office/link\n5. APPLICATION FEE: Amount (if any)\n6. DOCUMENTS TO SUBMIT: List documents needed for application\n7. PROCESSING TIME: How long approval takes\n8. APPROVAL/REJECTION: How decision is communicated\n9. APPEAL PROCESS: If rejected, how to appeal\n10. SUPPORT CONTACT: Phone/email/helpline for queries\n\nReturn as JSON with keys: eligible_applicants, steps (as array), application_mode, application_url, application_fee, submission_documents, processing_time, approval_process, appeal_process, support_contact",
+      "required_fields": ["steps", "application_mode", "processing_time"]
+    },
+    
+    "contact_information": {
+      "description": "Extract all contact details",
+      "prompt_template": "For the scheme '{scheme_name}', provide:\n1. Official website URL\n2. Helpline phone number(s)\n3. Email for queries\n4. Physical office address (central)\n5. State-level nodal officers contact (if applicable)\n6. Twitter/Social media handle\n7. Mobile app name (if exists)\n\nReturn as JSON with keys: website, helpline, email, office_address, state_nodal_officers, social_media, mobile_app",
+      "required_fields": ["website", "helpline"]
+    },
+    
+    "timeline_deadlines": {
+      "description": "Extract important dates and deadlines",
+      "prompt_template": "For the scheme '{scheme_name}', identify:\n1. When scheme applications are currently OPEN\n2. Deadline for current application cycle (if any)\n3. When benefits are typically disbursed (timing in year or months)\n4. When scheme might close or change\n5. Any seasonal application windows\n6. Important dates to remember\n\nReturn as JSON with keys: application_window, current_deadline, disbursement_timeline, scheme_validity, seasonal_notes, important_dates",
+      "required_fields": ["application_window", "disbursement_timeline"]
+    },
+    
+    "validation_checklist": {
+      "description": "Final validation of extracted data",
+      "prompt_template": "Based on all extracted information for '{scheme_name}', validate:\n\n1. COMPLETENESS:\n   - Are all eligibility criteria clearly defined?\n   - Are ALL requirements listed (even optional ones noted)?\n   - Is application process clear (no missing steps)?\n   - Are contact details complete and current?\n\n2. ACCURACY:\n   - Is the benefit amount correct and current?\n   - Are dates/deadlines current?\n   - Are URLs valid and working?\n   - Are office locations current?\n\n3. GAPS:\n   - Is there anything missing that a beneficiary would need to know?\n   - Are there any ambiguities?\n   - Are eligibility exceptions clearly stated?\n\n4. CLARITY:\n   - Can a layperson understand the process?\n   - Are technical terms explained?\n   - Are examples provided where helpful?\n\nProvide:\n- List of completeness issues (if any)\n- List of accuracy concerns (if any)\n- List of missing information (if any)\n- List of clarity improvements needed (if any)\n- Overall assessment: COMPLETE|NEEDS_REVIEW|INCOMPLETE\n\nReturn as JSON with keys: completeness_issues, accuracy_concerns, missing_info, clarity_issues, assessment",
+      "required_fields": ["assessment"]
+    }
+  },
+  
+  "extraction_sequence": [
+    "scheme_overview",
+    "eligibility_mapping",
+    "benefits_extraction",
+    "requirements_extraction",
+    "requirement_sourcing",
+    "application_process",
+    "contact_information",
+    "timeline_deadlines",
+    "validation_checklist"
+  ],
+  
+  "system_instructions": "You are a government scheme expert extracting information for India's official scheme eligibility platform. Your goal is to provide ACCURATE, COMPLETE, and ACTIONABLE information that helps citizens understand:\n1. If they are eligible\n2. What they need\n3. Where to get what they need\n4. How to apply\n5. When to expect benefits\n\nGuidelines:\n- Extract ONLY factual, verifiable information from official sources\n- If information is uncertain, mark as [UNCONFIRMED]\n- Quantify all monetary benefits in Indian Rupees (₹)\n- Use official government URLs (prefer .gov.in domains)\n- Identify state-specific variations where applicable\n- Flag any contradictory information between sources\n- Ensure accessibility: explain jargon, use simple language\n- Include examples wherever possible\n- Note if scheme details are subject to annual updates\n\nFor each extraction, respond in valid JSON format. If a field is not applicable, use null. If information is missing despite search, note [NOT_FOUND] with rationale.",
+  
+  "quality_checks": {
+    "required_fields_per_extraction": {
+      "scheme_overview": ["name", "id", "ministry", "source_url", "purpose"],
+      "eligibility_mapping": ["level_1_category", "level_2_life_stage", "level_6_income_region"],
+      "benefits_extraction": ["primary_benefit", "amount", "frequency"],
+      "requirements_extraction": ["documents", "certifications"],
+      "requirement_sourcing": ["official_website", "physical_location"],
+      "application_process": ["steps", "processing_time"],
+      "contact_information": ["website", "helpline"],
+      "timeline_deadlines": ["application_window", "disbursement_timeline"]
+    },
+    "validation_rules": [
+      "Benefit amount must be quantified",
+      "Application URL must be valid and traceable",
+      "Contact information must include at least helpline",
+      "Processing time must be realistic (not vague)",
+      "Eligibility must map to 7-level filters",
+      "All requirements must have sourcing information"
+    ]
+  }
+}
