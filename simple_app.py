@@ -55,7 +55,9 @@ def get_scheme(scheme_id):
 
 # Main
 if __name__ == '__main__':
+    import os
+    port = int(os.getenv('PORT', 5000))
     print("🚀 Project Kalam - Phase 1")
     print(f"📊 Schemes Loaded: {len(schemes)}")
-    print("🌐 Starting server on http://127.0.0.1:5000")
-    app.run(host='127.0.0.1', port=5000, debug=True, use_reloader=False)
+    print(f"🌐 Starting server on http://0.0.0.0:{port}")
+    app.run(host='0.0.0.0', port=port, debug=False, use_reloader=False)
